@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "臺南市",
+      "CountyCode": "67000",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 2045
+            },
+            {
+              "Type": "大貨車",
+              "Value": 13749
+            },
+            {
+              "Type": "小客車",
+              "Value": 618850
+            },
+            {
+              "Type": "小貨車",
+              "Value": 88900
+            },
+            {
+              "Type": "特種車",
+              "Value": 4954
+            },
+            {
+              "Type": "機車",
+              "Value": 1359174
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 1990
+            },
+            {
+              "Type": "大貨車",
+              "Value": 13788
+            },
+            {
+              "Type": "小客車",
+              "Value": 619515
+            },
+            {
+              "Type": "小貨車",
+              "Value": 88993
+            },
+            {
+              "Type": "特種車",
+              "Value": 4960
+            },
+            {
+              "Type": "機車",
+              "Value": 1360756
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 1990
+            },
+            {
+              "Type": "大貨車",
+              "Value": 13823
+            },
+            {
+              "Type": "小客車",
+              "Value": 620645
+            },
+            {
+              "Type": "小貨車",
+              "Value": 88985
+            },
+            {
+              "Type": "特種車",
+              "Value": 4981
+            },
+            {
+              "Type": "機車",
+              "Value": 1362621
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "臺北市",
+      "CountyCode": "63000",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 6081
+            },
+            {
+              "Type": "大貨車",
+              "Value": 7906
+            },
+            {
+              "Type": "小客車",
+              "Value": 740117
+            },
+            {
+              "Type": "小貨車",
+              "Value": 65066
+            },
+            {
+              "Type": "特種車",
+              "Value": 9130
+            },
+            {
+              "Type": "機車",
+              "Value": 945811
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 6083
+            },
+            {
+              "Type": "大貨車",
+              "Value": 7910
+            },
+            {
+              "Type": "小客車",
+              "Value": 739936
+            },
+            {
+              "Type": "小貨車",
+              "Value": 65081
+            },
+            {
+              "Type": "特種車",
+              "Value": 9080
+            },
+            {
+              "Type": "機車",
+              "Value": 945157
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 6053
+            },
+            {
+              "Type": "大貨車",
+              "Value": 7918
+            },
+            {
+              "Type": "小客車",
+              "Value": 740444
+            },
+            {
+              "Type": "小貨車",
+              "Value": 65119
+            },
+            {
+              "Type": "特種車",
+              "Value": 9086
+            },
+            {
+              "Type": "機車",
+              "Value": 944597
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
