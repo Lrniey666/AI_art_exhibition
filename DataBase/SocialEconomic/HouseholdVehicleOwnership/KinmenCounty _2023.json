@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "臺東縣",
+      "CountyCode": "10014",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 185
+            },
+            {
+              "Type": "大貨車",
+              "Value": 1695
+            },
+            {
+              "Type": "小客車",
+              "Value": 65372
+            },
+            {
+              "Type": "小貨車",
+              "Value": 17091
+            },
+            {
+              "Type": "特種車",
+              "Value": 1171
+            },
+            {
+              "Type": "機車",
+              "Value": 147829
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 184
+            },
+            {
+              "Type": "大貨車",
+              "Value": 1689
+            },
+            {
+              "Type": "小客車",
+              "Value": 65337
+            },
+            {
+              "Type": "小貨車",
+              "Value": 17111
+            },
+            {
+              "Type": "特種車",
+              "Value": 1173
+            },
+            {
+              "Type": "機車",
+              "Value": 147872
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 178
+            },
+            {
+              "Type": "大貨車",
+              "Value": 1695
+            },
+            {
+              "Type": "小客車",
+              "Value": 65454
+            },
+            {
+              "Type": "小貨車",
+              "Value": 17141
+            },
+            {
+              "Type": "特種車",
+              "Value": 1180
+            },
+            {
+              "Type": "機車",
+              "Value": 148378
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

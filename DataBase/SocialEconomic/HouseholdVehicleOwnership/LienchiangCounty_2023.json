@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "澎湖縣",
+      "CountyCode": "10016",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 263
+            },
+            {
+              "Type": "大貨車",
+              "Value": 540
+            },
+            {
+              "Type": "小客車",
+              "Value": 29940
+            },
+            {
+              "Type": "小貨車",
+              "Value": 4056
+            },
+            {
+              "Type": "特種車",
+              "Value": 478
+            },
+            {
+              "Type": "機車",
+              "Value": 85521
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 263
+            },
+            {
+              "Type": "大貨車",
+              "Value": 539
+            },
+            {
+              "Type": "小客車",
+              "Value": 30043
+            },
+            {
+              "Type": "小貨車",
+              "Value": 4045
+            },
+            {
+              "Type": "特種車",
+              "Value": 476
+            },
+            {
+              "Type": "機車",
+              "Value": 85613
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 269
+            },
+            {
+              "Type": "大貨車",
+              "Value": 542
+            },
+            {
+              "Type": "小客車",
+              "Value": 30275
+            },
+            {
+              "Type": "小貨車",
+              "Value": 4061
+            },
+            {
+              "Type": "特種車",
+              "Value": 478
+            },
+            {
+              "Type": "機車",
+              "Value": 86139
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

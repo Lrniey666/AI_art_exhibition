@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "屏東縣",
+      "CountyCode": "10013",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 525
+            },
+            {
+              "Type": "大貨車",
+              "Value": 6502
+            },
+            {
+              "Type": "小客車",
+              "Value": 242103
+            },
+            {
+              "Type": "小貨車",
+              "Value": 55031
+            },
+            {
+              "Type": "特種車",
+              "Value": 2365
+            },
+            {
+              "Type": "機車",
+              "Value": 626088
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 511
+            },
+            {
+              "Type": "大貨車",
+              "Value": 6502
+            },
+            {
+              "Type": "小客車",
+              "Value": 242299
+            },
+            {
+              "Type": "小貨車",
+              "Value": 55102
+            },
+            {
+              "Type": "特種車",
+              "Value": 2354
+            },
+            {
+              "Type": "機車",
+              "Value": 626456
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 513
+            },
+            {
+              "Type": "大貨車",
+              "Value": 6541
+            },
+            {
+              "Type": "小客車",
+              "Value": 242572
+            },
+            {
+              "Type": "小貨車",
+              "Value": 55191
+            },
+            {
+              "Type": "特種車",
+              "Value": 2349
+            },
+            {
+              "Type": "機車",
+              "Value": 626940
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

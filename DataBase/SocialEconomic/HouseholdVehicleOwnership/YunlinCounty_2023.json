@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "雲林縣",
+      "CountyCode": "10009",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 624
+            },
+            {
+              "Type": "大貨車",
+              "Value": 8809
+            },
+            {
+              "Type": "小客車",
+              "Value": 229089
+            },
+            {
+              "Type": "小貨車",
+              "Value": 52255
+            },
+            {
+              "Type": "特種車",
+              "Value": 2170
+            },
+            {
+              "Type": "機車",
+              "Value": 434645
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 627
+            },
+            {
+              "Type": "大貨車",
+              "Value": 8835
+            },
+            {
+              "Type": "小客車",
+              "Value": 229193
+            },
+            {
+              "Type": "小貨車",
+              "Value": 52300
+            },
+            {
+              "Type": "特種車",
+              "Value": 2170
+            },
+            {
+              "Type": "機車",
+              "Value": 434848
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 589
+            },
+            {
+              "Type": "大貨車",
+              "Value": 8861
+            },
+            {
+              "Type": "小客車",
+              "Value": 229444
+            },
+            {
+              "Type": "小貨車",
+              "Value": 52338
+            },
+            {
+              "Type": "特種車",
+              "Value": 2185
+            },
+            {
+              "Type": "機車",
+              "Value": 435065
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

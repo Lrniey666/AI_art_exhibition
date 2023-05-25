@@ -1,0 +1,99 @@
+{
+  "Data": "家戶車輛持有數",
+  "Year": "2023",
+  "Results": [
+    {
+      "CityName": "嘉義市",
+      "CountyCode": "10020",
+      "VehicleData": [
+        {
+          "Month": "1",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 691
+            },
+            {
+              "Type": "大貨車",
+              "Value": 2342
+            },
+            {
+              "Type": "小客車",
+              "Value": 85325
+            },
+            {
+              "Type": "小貨車",
+              "Value": 10174
+            },
+            {
+              "Type": "特種車",
+              "Value": 935
+            },
+            {
+              "Type": "機車",
+              "Value": 179842
+            }
+          ]
+        },
+        {
+          "Month": "2",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 693
+            },
+            {
+              "Type": "大貨車",
+              "Value": 2344
+            },
+            {
+              "Type": "小客車",
+              "Value": 85314
+            },
+            {
+              "Type": "小貨車",
+              "Value": 10190
+            },
+            {
+              "Type": "特種車",
+              "Value": 935
+            },
+            {
+              "Type": "機車",
+              "Value": 180026
+            }
+          ]
+        },
+        {
+          "Month": "3",
+          "Vehicles": [
+            {
+              "Type": "大客車",
+              "Value": 687
+            },
+            {
+              "Type": "大貨車",
+              "Value": 2346
+            },
+            {
+              "Type": "小客車",
+              "Value": 85504
+            },
+            {
+              "Type": "小貨車",
+              "Value": 10200
+            },
+            {
+              "Type": "特種車",
+              "Value": 938
+            },
+            {
+              "Type": "機車",
+              "Value": 180110
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
