@@ -34,5 +34,10 @@ git push//沒成功逝世以下指令
 git config --global push.default simple
 
 
+高速開網站:
+
+cd C:/python-10 && python manage.py runserver
+
+
 
 
