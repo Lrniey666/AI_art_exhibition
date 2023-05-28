@@ -1,0 +1,38 @@
+cd C:/python-10
+
+git pull建議步驟:
+
+git pull
+
+
+(壞掉時能修復)強制覆蓋本地程式git pull步驟:
+
+git stash
+
+git pull origin master//需要先處理衝突
+
+git stash pop
+
+
+(壞掉時能無法修復)強制覆蓋本地程式git pull步驟:
+
+git push -f origin master
+
+git pull
+
+
+git push建議步驟:
+
+git status//哪些文件已經被修改過
+
+git add .//添加你想要提交的改變(全部) git add ...py 添加你想要提交的改變(...py)
+
+git commit -m "訊息"
+
+git push//沒成功逝世以下指令
+
+git config --global push.default simple
+
+
+
+

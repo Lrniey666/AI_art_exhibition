@@ -1,0 +1,17 @@
+Fetch Tourism Data Output
+https://chat.openai.com/share/4512b258-9246-4dd2-a44d-80dee5cf68c7
+
+TRA Train Delay API
+https://chat.openai.com/share/c16bcdcb-af03-4c48-aa79-c2568291c72d
+
+同步GitHub專案到C槽
+https://chat.openai.com/share/c155a904-5d64-4958-9d40-d1e6676be24f
+
+導入JSON到Django数据库
+https://chat.openai.com/share/366aeb0d-ebef-4296-990d-8cbcc1f44274
+
+設定Django後台帳密
+https://chat.openai.com/share/aa273c0b-56c5-4700-8d81-882e4bc0b1f7
+
+Django HTML 首頁設定
+https://chat.openai.com/share/2f177e36-86c6-4eea-8869-15507b5fd128

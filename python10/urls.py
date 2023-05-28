@@ -3,7 +3,7 @@ from django.urls import path
 from mysite import views   # 引入views.py中所有的函式
 
 urlpatterns = [
-    path('', views.index),      # 設定執行首頁顯示的功能由index函式負責
+    path('', views.index, name='index'),      # add a name to the URL pattern
     path('admin/', admin.site.urls),
     path('vehicle_quantity_ranking/', views.vehicle_quantity_ranking),
 ]
