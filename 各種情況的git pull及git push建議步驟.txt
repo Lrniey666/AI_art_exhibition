@@ -27,7 +27,7 @@ git status//哪些文件已經被修改過
 
 git add .//添加你想要提交的改變(全部) git add ...py 添加你想要提交的改變(...py)
 
-git commit -m "訊息"
+git commit -m "masage"
 
 git push//沒成功逝世以下指令
 
