@@ -15,3 +15,11 @@ https://chat.openai.com/share/aa273c0b-56c5-4700-8d81-882e4bc0b1f7
 
 Django HTML 首頁設定
 https://chat.openai.com/share/2f177e36-86c6-4eea-8869-15507b5fd128
+
+Fetch Tourism Data Output
+https://chat.openai.com/share/4512b258-9246-4dd2-a44d-80dee5cf68c7
+
+合并两个命令
+https://chat.openai.com/share/56e51821-a0b0-479a-b44c-6daf90d5572c
+
+
