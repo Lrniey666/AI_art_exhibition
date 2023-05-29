@@ -16,3 +16,27 @@ def vehicle_quantity_ranking(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'vehicle_quantity_ranking.html', locals())
+
+def car_quantity_ranking(request):
+    fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'car_quantity_ranking.html', locals())
+
+def scooter_quantity_ranking(request):
+    fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'scooter_quantity_ranking.html', locals())
+
+def truck_quantity_ranking(request):
+    fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'truck_quantity_ranking.html', locals())
+
+def bus_quantity_ranking(request):
+    fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'bus_quantity_ranking.html', locals())
