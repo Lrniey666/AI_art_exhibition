@@ -3,13 +3,15 @@
 import requests
 import json
 from mysite.models import Vehicle  # replace app_name with your actual app name
+from Data_masage.tack_out import get_city_names as City
 
 app_id = 'c111118128-fd01fb23-e742-45ca'
 app_key = '95e547e9-568e-45fc-a3c5-497c29675d5d'
 
 auth_url="https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 url ="https://tdx.transportdata.tw/api/advanced/v1/SocialEconomic/HouseholdVehicleOwnership/Year/2023/City/Taipei?%24format=JSON"
-n=True
+
+
 
 class Auth():
 
