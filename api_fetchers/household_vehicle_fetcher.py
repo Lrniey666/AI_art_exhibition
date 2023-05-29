@@ -46,6 +46,7 @@ class Data():
         }
 
 def fetch_and_store_vehicle_data():
+    print(City())
     try:
         d = Data(app_id, app_key, auth_response)
         data_response = requests.get(url, headers=d.get_data_header())

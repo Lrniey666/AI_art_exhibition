@@ -22,4 +22,8 @@ https://chat.openai.com/share/4512b258-9246-4dd2-a44d-80dee5cf68c7
 合并两个命令
 https://chat.openai.com/share/56e51821-a0b0-479a-b44c-6daf90d5572c
 
+新增資料模型字段
+https://chat.openai.com/share/a32165aa-b327-4b1c-b961-57c247c31144
 
+新增CityName資料庫
+https://chat.openai.com/share/e4da26f7-b4a6-4e9a-a173-67e7b1307d1d
