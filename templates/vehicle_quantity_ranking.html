@@ -5,16 +5,33 @@
 {% endblock %}
 
 {% block headmessage %}
-  <h1>全國車輛數排行-臺北市</h1>
+  <h1>全國車輛數排行</h1>
 {% endblock %}
 
 {% block content %}
-<div style="width: 400px; height: 300px;">
+<style>
+  .chart-container {
+    display: flex;
+  }
+
+  .chart-container canvas {
+    flex: 1; /* 使用flex屬性使表格容器自動調整大小 */
+    max-width: 50%; /* 設置表格容器最大寬度為50% */
+    height: 400px;
+  }
+</style>
+
+<p style="font-size: 20px;text-align: center;font-weight: bold;">臺北市</p>
+<div class="chart-container">
   <canvas id="myChart"></canvas>
+  <canvas id="myChart2"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const ctx = document.getElementById('myChart');
+  const ctx2 = document.getElementById('myChart2');
+
+  // Chart configurations...
 
   new Chart(ctx, {
     type: 'bar',
@@ -23,8 +40,9 @@
       datasets: [{
         label: '車輛數量',
         data: {{ values|safe }},
-        backgroundColor: ['blue'],
+        backgroundColor: ['orange'],
         borderWidth: 1
+        
       }]
     },
     options: {
@@ -42,12 +60,47 @@
           text: '一月',
           position: 'top',
           font: {
-            size: 16
+            size: 16,
+            weight: 'bold'
           }
         }
       }
     }
   });
+
+  new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['大客車', '大貨車', '小客車', '小貨車', '特種車', '機車'],
+    datasets: [{
+      label: '車輛數量',
+      data: {{ values|safe }},  // 使用二月的資料
+      backgroundColor: ['blue'],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: '二月',
+        position: 'top',
+        font: {
+          size: 16,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+});
 </script>
 
 {% endblock %}
