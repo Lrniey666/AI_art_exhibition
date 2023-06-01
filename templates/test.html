@@ -1,0 +1,81 @@
+<nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">第十組-臺灣車輛資訊網</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">第十組-臺灣車輛資訊網</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                全國車輛數排行
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/vehicle_quantity_ranking/">臺北市</a></li>
+                <li><a class="dropdown-item" href="#">新北市</a></li>
+                <li><a class="dropdown-item" href="#">桃園市</a></li>
+                <li><a class="dropdown-item" href="#">臺中市</a></li>
+                <li><a class="dropdown-item" href="#">臺南市</a></li>
+                <li><a class="dropdown-item" href="#">高雄市</a></li>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  六都車數成長與收入
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">全國</a></li>
+                  <li><a class="dropdown-item" href="#">臺北市</a></li>
+                  <li><a class="dropdown-item" href="#">新北市</a></li>
+                  <li><a class="dropdown-item" href="#">桃園市</a></li>
+                  <li><a class="dropdown-item" href="#">臺中市</a></li>
+                  <li><a class="dropdown-item" href="#">臺南市</a></li>
+                  <li><a class="dropdown-item" href="#">高雄市</a></li>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  六都收入與車輛數之比較
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">全部車輛</a></li>
+                  <li><a class="dropdown-item" href="#">小汽車</a></li>
+                  <li><a class="dropdown-item" href="#">機車</a></li>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  六都學生比例與各車輛比例
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">小汽車</a></li>
+                  <li><a class="dropdown-item" href="#">機車</a></li>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="https://www.motc.gov.tw/ch/index/">交通部官網</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/admin/">管理後臺</a>
+              </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>

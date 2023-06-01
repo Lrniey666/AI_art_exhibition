@@ -71,6 +71,7 @@ def fetch_and_store_vehicle_data():
             for vehicle in vehicles:
                 vehicle_type = vehicle.get('Type')
                 value = vehicle.get('Value')
+                
 
                 # Assume you have a Vehicle model in your app with these fields
                 # if not, replace this with appropriate model and fields
