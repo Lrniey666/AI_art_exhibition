@@ -27,3 +27,7 @@ https://chat.openai.com/share/a32165aa-b327-4b1c-b961-57c247c31144
 
 新增CityName資料庫
 https://chat.openai.com/share/e4da26f7-b4a6-4e9a-a173-67e7b1307d1d
+
+API請求及本地儲存
+https://chat.openai.com/share/a6bc48ad-ee43-4a7d-a306-701f64ee9911
+

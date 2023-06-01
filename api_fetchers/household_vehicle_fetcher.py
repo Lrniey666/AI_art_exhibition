@@ -4,6 +4,7 @@ import requests
 import json
 from mysite.models import Vehicle  # replace app_name with your actual app name
 from Data_masage.tack_out import get_city_names as City
+from datetime import datetime
 
 app_id = 'c111118128-fd01fb23-e742-45ca'
 app_key = '95e547e9-568e-45fc-a3c5-497c29675d5d'
@@ -11,6 +12,11 @@ app_key = '95e547e9-568e-45fc-a3c5-497c29675d5d'
 auth_url="https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 url ="https://tdx.transportdata.tw/api/advanced/v1/SocialEconomic/HouseholdVehicleOwnership/Year/2023/City/Taipei?%24format=JSON"
 
+now_time = datetime.now()
+year = now_time.year
+month =now_time.month
+day = now_time.day
+date_list = [year, month, day]
 
 
 class Auth():
@@ -46,33 +52,45 @@ class Data():
         }
 
 def fetch_and_store_vehicle_data():
-    print(City())
-    try:
-        d = Data(app_id, app_key, auth_response)
-        data_response = requests.get(url, headers=d.get_data_header())
-    except:
-        a = Auth(app_id, app_key)
-        auth_response = requests.post(auth_url, a.get_auth_header())
-        d = Data(app_id, app_key, auth_response)
-        data_response = requests.get(url, headers=d.get_data_header())    
+    city_names = City()  # get city names
+    current_year = date_list[0]  # get current year from date_list
 
-    data_json = data_response.json()
-    results = data_json.get('Results', [])
+    for year in range(2016, current_year + 1):  # iterate from 2016 to current year
+        for city in city_names:  # iterate over all cities
+            city_name_en = city[0]  # get English name of city
+            print(year)
+            print(city[0])
 
-    for result in results:
-        city_name = result.get('CityName')
-        county_code = result.get('CountyCode')
-        vehicle_data = result.get('VehicleData', [])
-        
-        for month_data in vehicle_data:
-            month = month_data.get('Month')
-            vehicles = month_data.get('Vehicles', [])
+            # construct the url
+            url = f"https://tdx.transportdata.tw/api/advanced/v1/SocialEconomic/HouseholdVehicleOwnership/Year/{year}/City/{city_name_en}?%24format=JSON"
 
-            for vehicle in vehicles:
-                vehicle_type = vehicle.get('Type')
-                value = vehicle.get('Value')
+            try:
+                a = Auth(app_id, app_key)
+                auth_response = requests.post(auth_url, a.get_auth_header())
+                d = Data(app_id, app_key, auth_response)
+                data_response = requests.get(url, headers=d.get_data_header())    
+
+                data_json = data_response.json()
+                results = data_json.get('Results', [])
                 
+                if not results:  # if results is empty, skip the current iteration
+                    print(f"No data for {city_name_en} in {year}")
+                    continue
 
-                # Assume you have a Vehicle model in your app with these fields
-                # if not, replace this with appropriate model and fields
-                Vehicle.objects.update_or_create(city_name=city_name, county_code=county_code, month=month, vehicle_type=vehicle_type, value=value)
+                for result in results:
+                    city_name = result.get('CityName')
+                    county_code = result.get('CountyCode')
+                    vehicle_data = result.get('VehicleData', [])
+                    
+                    for month_data in vehicle_data:
+                        month = month_data.get('Month')
+                        vehicles = month_data.get('Vehicles', [])
+
+                        for vehicle in vehicles:
+                            vehicle_type = vehicle.get('Type')
+                            value = vehicle.get('Value')
+                            
+                            Vehicle.objects.update_or_create(year=year,city_name=city_name, county_code=county_code, month=month, vehicle_type=vehicle_type, value=value)
+            
+            except Exception as e:
+                print(f"An error occurred: {e}")

@@ -7,6 +7,7 @@ class City_name(models.Model):
     city_Chinese_name = models.CharField(max_length=255)
 
 class Vehicle(models.Model):
+    year=models.IntegerField()
     city_name = models.CharField(max_length=255)
     county_code = models.CharField(max_length=255)
     month = models.IntegerField()
