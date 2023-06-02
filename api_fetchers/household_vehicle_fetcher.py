@@ -3,11 +3,11 @@
 import requests
 import json
 from mysite.models import Vehicle  # replace app_name with your actual app name
-from Data_masage.tack_out import get_city_names as City
+from Data_masage.tack_out import get_city_names as City , get_TDX_API as GTA
 from datetime import datetime
 
-app_id = 'c111118128-fd01fb23-e742-45ca'
-app_key = '95e547e9-568e-45fc-a3c5-497c29675d5d'
+app_id = 'c111118128-e3258c81-c7da-4126'
+app_key = '130c417a-36e8-45f9-ace8-f177ac6b1a52'
 
 auth_url="https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 url ="https://tdx.transportdata.tw/api/advanced/v1/SocialEconomic/HouseholdVehicleOwnership/Year/2023/City/Taipei?%24format=JSON"
@@ -65,6 +65,11 @@ def fetch_and_store_vehicle_data():
             url = f"https://tdx.transportdata.tw/api/advanced/v1/SocialEconomic/HouseholdVehicleOwnership/Year/{year}/City/{city_name_en}?%24format=JSON"
 
             try:
+                api_list=GTA()
+                app_id=api_list[0]
+                app_key=api_list[1]
+                print(app_id)
+                print(app_key)
                 a = Auth(app_id, app_key)
                 auth_response = requests.post(auth_url, a.get_auth_header())
                 d = Data(app_id, app_key, auth_response)
