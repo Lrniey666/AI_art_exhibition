@@ -27,10 +27,14 @@ git status//哪些文件已經被修改過
 
 git add .//添加你想要提交的改變(全部) git add ...py 添加你想要提交的改變(...py)
 
-git commit -m "masage"
+git commit -m "資料庫增加了2016到2021(因為這是最新的)的全台家戶收入，不過有些離島的資料TDX就有缺失了"
 
-git push//沒成功逝世以下指令
+//沒成功逝世以下指令
 
+先合併:
+git pull --rebase
+
+強制取代:
 git config --global push.default simple
 
 
