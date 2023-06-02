@@ -17,3 +17,12 @@ class Vehicle(models.Model):
     month = models.IntegerField()
     vehicle_type = models.CharField(max_length=255)
     value = models.IntegerField()
+
+class Household_income(models.Model):
+    year = models.CharField(max_length=255)
+    city_name = models.CharField(max_length=255)
+    county_code = models.CharField(max_length=255)
+    Avg_number_of_househods = models.FloatField()  
+    Avg_number_of_employment = models.FloatField()  
+    Avg_number_of_income = models.FloatField()  
+    Total = models.FloatField()  
