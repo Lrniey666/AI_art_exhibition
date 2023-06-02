@@ -1,0 +1,35 @@
+1.admin.py:
+from mysite.models import A
+
+admin.site.register(A)
+
+2.models.py
+
+class A(models.Model):
+    a = models.CharField(max_length=255)
+    b = models.IntegerField()
+
+3.C:/python-10/
+
+python manage.py makemigrations mysite
+
+成功:
+
+python manage.py migrate
+
+不成功(可能有原資料):
+
+(1)
+採用1或2方法
+
+(2)刪除原資料
+python manage.py shell
+
+>>> from mysite.models import Vehicle
+>>> Vehicle.objects.all().delete()
+
+>>> exit()
+
+
+
+python manage.py migrate

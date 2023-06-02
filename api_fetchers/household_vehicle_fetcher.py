@@ -55,7 +55,7 @@ def fetch_and_store_vehicle_data():
     city_names = City()  # get city names
     current_year = date_list[0]  # get current year from date_list
 
-    for year in range(2016, current_year + 1):  # iterate from 2016 to current year
+    for year in range(current_year-1, current_year+1):  # iterate from 2016 to current year
         for city in city_names:  # iterate over all cities
             city_name_en = city[0]  # get English name of city
             print(year)
@@ -68,8 +68,7 @@ def fetch_and_store_vehicle_data():
                 a = Auth(app_id, app_key)
                 auth_response = requests.post(auth_url, a.get_auth_header())
                 d = Data(app_id, app_key, auth_response)
-                data_response = requests.get(url, headers=d.get_data_header())    
-
+                data_response = requests.get(url, headers=d.get_data_header())
                 data_json = data_response.json()
                 results = data_json.get('Results', [])
                 
