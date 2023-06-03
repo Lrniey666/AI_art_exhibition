@@ -26,3 +26,21 @@ class Household_income(models.Model):
     Avg_number_of_employment = models.FloatField()  
     Avg_number_of_income = models.FloatField()  
     Total = models.FloatField()  
+
+class Universities_and_colleges_Student_status(models.Model):
+    year = models.CharField(max_length=255)
+    city_name = models.CharField(max_length=255)
+    county_code = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+    SchoolCode = models.CharField(max_length=255)
+    SchoolName = models.CharField(max_length=255)
+    NumberOfMales = models.CharField(max_length=255)
+    NumberOfFemales = models.CharField(max_length=255)
+    Total = models.CharField(max_length=255)
+
+class Data_renew_time(models.Model):  
+    year=models.IntegerField()
+    month=models.IntegerField()
+    day=models.IntegerField()
+    data_name= models.CharField(max_length=255)
+    renew_wrong=models.IntegerField()
