@@ -69,7 +69,6 @@ def bus_quantity_ranking(request):
     #fasvd()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-<<<<<<< HEAD
     return render(request, 'bus_quantity_ranking.html', locals())
 
 def vehicle_growing_up_all(request):
@@ -167,7 +166,4 @@ def student_and_vehicle_car(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'student_and_vehicle_car.html', locals())
-=======
     print(vr())
-    return render(request, 'bus_quantity_ranking.html', locals())
->>>>>>> bcdbbf668af0dbe5013bdc009f589eade2526c09
