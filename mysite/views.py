@@ -8,6 +8,7 @@ from api_fetchers.household_vehicle_fetcher import fetch_and_store_vehicle_data 
 from api_fetchers.household_income_fetcher import fetch_and_store_income_data as fasid
 from api_fetchers.UACSS_fetcher import fetch_and_store_UACSS_data as fasuad
 from Data_masage.vehicle_quantity_ranking import get_new_vehicle as gnv,get_vehicle_latest_year_month as gvlyrm,vehicle_ranking as vr
+from Data_masage.vehicle_income_growing_compare import get_Household_income as ghi ,get_income_renew_time as girt,get_all_vehicle_until_income_renew as gavuir
 
 def index(request):
     #fasvd()  # Fetch and store data
@@ -15,7 +16,9 @@ def index(request):
     #fasuad()
     mynames = ["第十組"]
     myname = random.choice(mynames)
-    print(vr())
+    #print(vr())
+    #print(ghi())
+    #print(gavuir())
     return render(request, "index.html", locals())
 
 def vehicle_quantity_ranking(request):
@@ -26,7 +29,9 @@ def vehicle_quantity_ranking(request):
     # 將數據轉換為所需的格式，例如列表或字典
     values = [vehicle.value for vehicle in vehicles]  # 提取車輛的值
 
-    print(vr())
+    #print(vr())
+    #print(ghi())
+    #print(gavuir())
 
     context = {
         'values': values,
@@ -40,9 +45,11 @@ def car_quantity_ranking(request):
     #fasuad()
     #fasvd()
     #fasid()
+    #print(ghi())
+    #print(gavuir())
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
+    #print(vr())
     return render(request, 'car_quantity_ranking.html', locals())
 
 def scooter_quantity_ranking(request):
@@ -51,7 +58,7 @@ def scooter_quantity_ranking(request):
     #fasid()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
+    #print(vr())
     return render(request, 'scooter_quantity_ranking.html', locals())
 
 def truck_quantity_ranking(request):
@@ -60,7 +67,7 @@ def truck_quantity_ranking(request):
     #fasvd()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
+    #print(vr())
     return render(request, 'truck_quantity_ranking.html', locals())
 
 def bus_quantity_ranking(request):
@@ -69,7 +76,6 @@ def bus_quantity_ranking(request):
     #fasvd()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-<<<<<<< HEAD
     return render(request, 'bus_quantity_ranking.html', locals())
 
 def vehicle_growing_up_all(request):
@@ -167,7 +173,5 @@ def student_and_vehicle_car(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'student_and_vehicle_car.html', locals())
-=======
     print(vr())
-    return render(request, 'bus_quantity_ranking.html', locals())
->>>>>>> bcdbbf668af0dbe5013bdc009f589eade2526c09
+
