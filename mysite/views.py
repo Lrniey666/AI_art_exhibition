@@ -61,3 +61,99 @@ def bus_quantity_ranking(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'bus_quantity_ranking.html', locals())
+
+def vehicle_growing_up_all(request):
+    #fasuad()
+    #fasvd()
+    #fasid()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_all.html', locals())
+
+def vehicle_growing_up_TP(request):
+    #fasuad()
+    #fasvd()
+    #fasid()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_TP.html', locals())
+
+def vehicle_growing_up_NP(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_NP.html', locals())
+
+def vehicle_growing_up_TY(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_TY.html', locals())
+
+def vehicle_growing_up_TC(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_TC.html', locals())
+
+def vehicle_growing_up_TN(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_TN.html', locals())
+
+def vehicle_growing_up_KH(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'vehicle_growing_up_KH.html', locals())
+
+def Income_and_vehicle_all(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'Income_and_vehicle_all.html', locals())
+
+def Income_and_vehicle_car(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'Income_and_vehicle_car.html', locals())
+
+def Income_and_vehicle_scooter(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'Income_and_vehicle_scooter.html', locals())
+
+def student_and_vehicle_scooter(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'student_and_vehicle_scooter.html', locals())
+
+def student_and_vehicle_car(request):
+    #fasuad()
+    #fasid()
+    #fasvd()
+    # 你可能需要在這裡提供給模板一些上下文資料
+    context = {}
+    return render(request, 'student_and_vehicle_car.html', locals())

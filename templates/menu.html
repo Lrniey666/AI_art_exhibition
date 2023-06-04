@@ -1,3 +1,27 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<script>
+  // 當網頁載入完成時執行
+  document.addEventListener("DOMContentLoaded", function() {
+    // 獲取所有具有子選單的下拉選單元素
+    var dropdownToggleList = document.querySelectorAll('.dropdown-toggle');
+
+    // 迭代每個下拉選單元素
+    dropdownToggleList.forEach(function(dropdownToggle) {
+      // 監聽點擊事件
+      dropdownToggle.addEventListener('click', function(event) {
+        event.preventDefault(); // 防止預設的超連結行為
+        event.stopPropagation(); // 阻止事件冒泡
+
+        // 切換下拉選單的展開/折疊狀態
+        var dropdownMenu = this.nextElementSibling;
+        dropdownMenu.classList.toggle('show');
+      });
+    });
+  });
+</script>
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">第十組</a>
@@ -11,14 +35,26 @@
         </li>     
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            全國車輛數排行
+            車輛數排行
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/vehicle_quantity_ranking/">全國車輛數排行</a></li>
-            <li><a class="dropdown-item" href="/car_quantity_ranking/">小汽車數排行</a></li>
-            <li><a class="dropdown-item" href="/scooter_quantity_ranking/">機車數排行</a></li>
-            <li><a class="dropdown-item" href="/truck_quantity_ranking/">大貨車數排行</a></li>
-            <li><a class="dropdown-item" href="/bus_quantity_ranking/">大客車數排行</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                全國車輛數排行
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/vehicle_growing_up_TP/">臺北市</a></li>
+                <li><a class="dropdown-item" href="/vehicle_growing_up_NP/">新北市</a></li>
+                <li><a class="dropdown-item" href="/vehicle_growing_up_TY/">桃園市</a></li>
+                <li><a class="dropdown-item" href="/vehicle_growing_up_TC/">臺中市</a></li>
+                <li><a class="dropdown-item" href="/vehicle_growing_up_TN/">臺南市</a></li>
+                <li><a class="dropdown-item" href="/vehicle_growing_up_KH/">高雄市</a></li>
+              </ul>
+            </li>            
+          <li><a class="dropdown-item" href="/car_quantity_ranking/">小汽車數排行</a></li>
+          <li><a class="dropdown-item" href="/scooter_quantity_ranking/">機車數排行</a></li>
+          <li><a class="dropdown-item" href="/truck_quantity_ranking/">大貨車數排行</a></li>
+          <li><a class="dropdown-item" href="/bus_quantity_ranking/">大客車數排行</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -26,13 +62,13 @@
             六都車數成長與收入
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/phonelist/">全國</a></li>
-            <li><a class="dropdown-item" href="/stock300list/">臺北市</a></li>
-            <li><a class="dropdown-item" href="/chart/">新北市</a></li>
-            <li><a class="dropdown-item" href="/chart/">桃園市</a></li>
-            <li><a class="dropdown-item" href="/chart/">臺中市</a></li>
-            <li><a class="dropdown-item" href="/chart/">臺南市</a></li>
-            <li><a class="dropdown-item" href="/chart/">高雄市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_all/">全國</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_TP/">臺北市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_NP/">新北市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_TY/">桃園市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_TC/">臺中市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_TN/">臺南市</a></li>
+            <li><a class="dropdown-item" href="/vehicle_growing_up_KH/">高雄市</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -40,9 +76,9 @@
             六都收入與車輛數之比較
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/phonelist/">全部車輛</a></li>
-            <li><a class="dropdown-item" href="/stock300list/">小汽車</a></li>
-            <li><a class="dropdown-item" href="/chart/">機車</a></li>
+            <li><a class="dropdown-item" href="/Income_and_vehicle_all/">全部車輛</a></li>
+            <li><a class="dropdown-item" href="/Income_and_vehicle_car/">小汽車</a></li>
+            <li><a class="dropdown-item" href="/Income_and_vehicle_scooter/">機車</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -50,12 +86,12 @@
             六都學生比例與各車輛比例
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/phonelist/">小汽車</a></li>
-            <li><a class="dropdown-item" href="/chart/">機車</a></li>
+            <li><a class="dropdown-item" href="/student_and_vehicle_car/">小汽車</a></li>
+            <li><a class="dropdown-item" href="/student_and_vehicle_scooter/">機車</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://www.motc.gov.tw/ch/index/">交通部官網</a>
+          <a class="nav-link" href="https://www.motc.gov.tw/">交通部官網</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/">管理後台</a>

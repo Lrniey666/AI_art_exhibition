@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  第十組-汽車
+{% endblock %}
+
+{% block headmessage %}
+  <h1>臺灣車輛資訊網</h1>
+{% endblock %}
+
+{% block content %}
+<style>
+  .chart-container {
+    display: flex;
+  }
+
+  .chart-container canvas {
+    flex: 1; /* 使用flex屬性使表格容器自動調整大小 */
+    max-width: 50%; /* 設置表格容器最大寬度為50% */
+    height: 400px;
+  }
+</style>
+
+<p style="font-size: 20px;text-align: center;font-weight: bold;">汽車</p>
+<div class="chart-container">
+  <canvas id="myChart"></canvas>
+  <canvas id="myChart2"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('myChart');
+  const ctx2 = document.getElementById('myChart2');
+
+  // Chart configurations...
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1', '2', '3','4','5','6'],
+      datasets: [{
+        label: '車輛數量',
+        data: [ 1,2,3,4,5 ],
+        backgroundColor: ['orange'],
+        borderWidth: 1
+        
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: '一月',
+          position: 'top',
+          font: {
+            size: 16,
+            weight: 'bold'
+          }
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
