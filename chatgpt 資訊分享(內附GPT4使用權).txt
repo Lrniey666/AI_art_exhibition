@@ -31,3 +31,5 @@ https://chat.openai.com/share/e4da26f7-b4a6-4e9a-a173-67e7b1307d1d
 API請求及本地儲存
 https://chat.openai.com/share/a6bc48ad-ee43-4a7d-a306-701f64ee9911
 
+Django Vehicle Ranking
+https://chat.openai.com/share/89d6a544-5012-4c3d-9282-f22e782d021f
