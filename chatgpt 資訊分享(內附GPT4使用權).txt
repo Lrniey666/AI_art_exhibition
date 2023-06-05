@@ -33,3 +33,7 @@ https://chat.openai.com/share/a6bc48ad-ee43-4a7d-a306-701f64ee9911
 
 Django Vehicle Ranking
 https://chat.openai.com/share/89d6a544-5012-4c3d-9282-f22e782d021f
+
+車輛資料篩選
+https://chat.openai.com/share/2c1820dd-9f25-442f-98bd-b0e70516a5b9
+
