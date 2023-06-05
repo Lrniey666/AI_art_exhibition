@@ -70,3 +70,4 @@ def vehicle_ranking():
     sorted_cities = sorted(city_totals.items(), key=lambda item: item[1], reverse=True)
 
     return sorted_cities
+

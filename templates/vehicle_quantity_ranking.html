@@ -26,21 +26,16 @@
   const ctx = document.getElementById('myChart');
   
   // 獲取車輛數量排行資料
-  const vehicleData = {{ values|safe }};
-
-
-  // 提取城市名稱和總值
-const cityNames = vehicleData.map(entry => entry[0]);
-const totalValues = vehicleData.map(entry => entry[2]);
-cityNames
+  const cityNames = {{ city_names|safe }};
+  const values = {{ values|safe }};
   // 配置圖表
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['新北市','高雄市','臺中市','桃園市' ,'臺南市','臺北市', '彰化縣', '屏東縣', '雲林縣','新竹縣','苗栗縣','嘉義縣','南投縣','新竹市','宜蘭縣','花蓮縣', '基隆市', '嘉義市','臺東縣','金門縣','澎湖縣', '連江縣'],
+      labels: cityNames,
       datasets: [{
         label: '車輛數量',
-        data: [3329822, 3024627, 2977108, 2183089, 2093045, 1773217, 1352894, 934106, 728482, 575180, 561900, 544454, 534168, 452972, 446722, 330790, 290314, 279785, 234026, 125137, 121764, 12056],
+        data: values,
         backgroundColor: 'orange',
         borderWidth: 1
       }]
@@ -51,17 +46,6 @@ cityNames
       scales: {
         y: {
           beginAtZero: true
-        }
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: '車輛數量排行',
-          position: 'top',
-          font: {
-            size: 16,
-            weight: 'bold'
-          }
         }
       }
     }

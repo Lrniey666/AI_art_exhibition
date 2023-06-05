@@ -18,20 +18,20 @@ def index(request):
     #fasuad()
     mynames = ["第十組"]
     myname = random.choice(mynames)
-    print(vr())
     return render(request, "index.html", locals())
+    print(vr())
 
 
 def vehicle_quantity_ranking(request):
-    # 假設您的資料庫模型是 Vehicle，並且有一個名為 value 的欄位
-    vehicles = Vehicle.objects.all()  # 從資料庫中獲取所有車輛
+    vehicle_data = vr()  # 調用vehicle_ranking()函數獲取數據
 
-    # 將數據轉換為所需的格式，例如列表或字典
-    values = [vehicle.value for vehicle in vehicles]  # 提取車輛的值
-    
+    # 將數據轉換為所需的格式
+    city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
+    values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
+
     context = {
+        'city_names': city_names,
         'values': values,
-        
     }
 
     return render(request, 'vehicle_quantity_ranking.html', context)
@@ -42,8 +42,8 @@ def car_quantity_ranking(request):
     #fasid()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
     return render(request, 'car_quantity_ranking.html', locals())
+    print(vr())
 
 def scooter_quantity_ranking(request):
     #fasuad()
@@ -51,8 +51,8 @@ def scooter_quantity_ranking(request):
     #fasid()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
     return render(request, 'scooter_quantity_ranking.html', locals())
+    print(vr())
 
 def truck_quantity_ranking(request):
     #fasuad()
@@ -60,9 +60,9 @@ def truck_quantity_ranking(request):
     #fasvd()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
-    print(vr())
     return render(request, 'truck_quantity_ranking.html', locals())
-
+    print(vr())
+    
 def bus_quantity_ranking(request):
     #fasuad()
     #fasid()
