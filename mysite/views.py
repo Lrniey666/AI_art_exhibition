@@ -8,6 +8,7 @@ from api_fetchers.household_vehicle_fetcher import fetch_and_store_vehicle_data 
 from api_fetchers.household_income_fetcher import fetch_and_store_income_data as fasid
 from api_fetchers.UACSS_fetcher import fetch_and_store_UACSS_data as fasuad
 from Data_masage.vehicle_quantity_ranking import get_new_vehicle as gnv,get_vehicle_latest_year_month as gvlyrm,vehicle_ranking as vr
+from Data_masage.six_city_vehicle_incom_compare import get_six_city_new_car_data as gscncd,get_six_city_new_scooter_data as gscnsd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -16,10 +17,11 @@ def index(request):
     #fasvd()  # Fetch and store data
     #fasid()
     #fasuad()
+
     mynames = ["第十組"]
     myname = random.choice(mynames)
     return render(request, "index.html", locals())
-    print(vr())
+
 
 
 def vehicle_quantity_ranking(request):
@@ -28,6 +30,7 @@ def vehicle_quantity_ranking(request):
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
+
 
     context = {
         'city_names': city_names,
@@ -43,7 +46,10 @@ def car_quantity_ranking(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'car_quantity_ranking.html', locals())
-    print(vr())
+    
+    #print(vr())
+    
+
 
 def scooter_quantity_ranking(request):
     #fasuad()
