@@ -12,6 +12,7 @@
 <style>
   .chart-container {
     width: 100%;
+    height: 550px; /* 设置图表容器的高度 */
     margin: auto;
   }
 </style>
@@ -45,10 +46,11 @@
       maintainAspectRatio: false,
       scales: {
         y: {
-          beginAtZero: true
-        }
+          beginAtZero: false, // 设置为false，纵轴不从零开始
+        min: 10000 // 设置纵轴的起始值为10
       }
-    }
-  });
+    },
+  }
+});
 </script>
 {% endblock %}
