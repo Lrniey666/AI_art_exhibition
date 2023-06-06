@@ -7,7 +7,6 @@ django.setup()
 from mysite.models import City_name,Tdx_api,Vehicle
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
 api_turn=0
 
 def get_city_names():
@@ -28,6 +27,10 @@ def get_TDX_API():
     else:
        api_turn=0     
     return aapi
+
+def get_six_citys_Data():
+    six_citys=["臺北市","新北市","桃園市","臺中市","臺南市","高雄市"]
+    return six_citys
 
 def get_vehicle_latest_year_month():
     # Start from the current year and month

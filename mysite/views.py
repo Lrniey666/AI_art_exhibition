@@ -8,7 +8,7 @@ from api_fetchers.household_vehicle_fetcher import fetch_and_store_vehicle_data 
 from api_fetchers.household_income_fetcher import fetch_and_store_income_data as fasid
 from api_fetchers.UACSS_fetcher import fetch_and_store_UACSS_data as fasuad
 from Data_masage.vehicle_quantity_ranking import get_new_vehicle as gnv,get_vehicle_latest_year_month as gvlyrm,vehicle_ranking as vr
-from Data_masage.six_city_vehicle_incom_compare import get_six_city_new_car_data as gscncd,get_six_city_new_scooter_data as gscnsd
+from Data_masage.six_city_vehicle_incom_compare import get_six_city_car_data_as_income_renew_year as sccair,get_six_city_scooter_data_as_income_renew_year as scsair,get_new_Household_income as gnhi
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -20,6 +20,7 @@ def index(request):
 
     mynames = ["第十組"]
     myname = random.choice(mynames)
+    
     return render(request, "index.html", locals())
 
 
@@ -36,6 +37,8 @@ def vehicle_quantity_ranking(request):
         'city_names': city_names,
         'values': values,
     }
+    #print(sccair())
+    
 
     return render(request, 'vehicle_quantity_ranking.html', context)
 
@@ -45,6 +48,9 @@ def car_quantity_ranking(request):
     #fasid()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
+    #print(scsair())
+    #print(gnhi())
+
     return render(request, 'car_quantity_ranking.html', locals())
     
     #print(vr())
@@ -58,7 +64,7 @@ def scooter_quantity_ranking(request):
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {}
     return render(request, 'scooter_quantity_ranking.html', locals())
-    print(vr())
+    
 
 def truck_quantity_ranking(request):
     #fasuad()

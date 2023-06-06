@@ -1,0 +1,46 @@
+def get_vehicle_latest_year_month():
+    # Start from the current year and month
+    current_date = datetime.now()
+    year = current_date.year
+    month = current_date.month
+    
+    vehicles = Vehicle.objects.filter(year=year, month=month)
+
+def get_six_city_new_car_data():
+    # Fetch the vehicle data
+    vehicle_data = gnv()
+
+    city_values = {}  # this will keep track of the total value for each city
+    # Filter by vehicle type and city
+    for entry in vehicle_data:
+        city_name = entry[0]
+        vehicle_type = entry[1]
+        value = entry[2]
+
+        if city_name in six_city and vehicle_type in ["小客車","小貨車"]:
+            # if city already exists in city_values, add the value. else, set the value.
+            if city_name in city_values:
+                city_values[city_name] += value
+            else:
+                city_values[city_name] = value
+
+    result = [[k, v] for k, v in city_values.items()]
+    return result
+
+
+
+def get_six_city_new_scooter_data():
+    # Fetch the vehicle data
+    vehicle_data = gnv()
+
+    result = []
+    # Filter by vehicle type and city
+    for entry in vehicle_data:
+        city_name = entry[0]
+        vehicle_type = entry[1]
+        value = entry[2]
+
+        if city_name in six_city and vehicle_type == "機車":
+            result.append([city_name, value])       
+
+    return result
