@@ -38,6 +38,18 @@ class Universities_and_colleges_Student_status(models.Model):
     NumberOfFemales = models.CharField(max_length=255)
     Total = models.CharField(max_length=255)
 
+class Population_stats(models.Model):
+    Year = models.CharField(max_length=255)  
+    CityName = models.CharField(max_length=255)
+    CountyCode = models.CharField(max_length=255)
+    Month = models.CharField(max_length=255)
+    TownName = models.CharField(max_length=255)
+    TownCode = models.CharField(max_length=255)
+    NumberOfHousehods = models.IntegerField()
+    NumberOfPopulation = models.IntegerField()
+    NumberOfMales = models.IntegerField()
+    NumberOfFemales = models.IntegerField()
+
 class Data_renew_time(models.Model):  
     year=models.IntegerField()
     month=models.IntegerField()
