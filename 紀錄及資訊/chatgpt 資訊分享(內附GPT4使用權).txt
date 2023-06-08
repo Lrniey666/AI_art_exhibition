@@ -37,3 +37,12 @@ https://chat.openai.com/share/89d6a544-5012-4c3d-9282-f22e782d021f
 車輛資料篩選
 https://chat.openai.com/share/2c1820dd-9f25-442f-98bd-b0e70516a5b9
 
+Django Vehicle Ranking
+https://chat.openai.com/share/89d6a544-5012-4c3d-9282-f22e782d021f
+
+22 Unique Cities, 1 Truck
+https://chat.openai.com/share/7ba44a9f-77c3-4d64-8fff-fe6913cb352f
+
+
+
+
