@@ -71,3 +71,106 @@ def vehicle_ranking():
 
     return sorted_cities
 
+def vehicle_car_ranking():
+    # Fetch the vehicle data
+    vehicle_data = get_new_vehicle()
+
+    # Initialize a dictionary to hold the total value for each city
+    city_totals = {}
+
+    # For each entry in the vehicle data...
+    for entry in vehicle_data:
+        city_name = entry[0]
+        value = entry[2]
+
+        # If this city is not yet in the dictionary, add it with a total value of 0
+        if city_name not in city_totals:
+            city_totals[city_name] = 0
+
+        # Add the value for this entry to the city's total
+        if entry[1] == "小客車":
+            city_totals[city_name] += value
+
+    # Now we want to sort the cities by total value. We'll use a list of tuples for this.
+    # Each tuple will be (city_name, total_value), and we'll sort them by total_value.
+    sorted_cities = sorted(city_totals.items(), key=lambda item: item[1], reverse=True)
+
+    return sorted_cities
+
+def vehicle_sc_ranking():
+    # Fetch the vehicle data
+    vehicle_data = get_new_vehicle()
+
+    # Initialize a dictionary to hold the total value for each city
+    city_totals = {}
+
+    # For each entry in the vehicle data...
+    for entry in vehicle_data:
+        city_name = entry[0]
+        value = entry[2]
+
+        # If this city is not yet in the dictionary, add it with a total value of 0
+        if city_name not in city_totals:
+            city_totals[city_name] = 0
+
+        # Add the value for this entry to the city's total
+        if entry[1] == "機車":
+            city_totals[city_name] += value
+
+    # Now we want to sort the cities by total value. We'll use a list of tuples for this.
+    # Each tuple will be (city_name, total_value), and we'll sort them by total_value.
+    sorted_cities = sorted(city_totals.items(), key=lambda item: item[1], reverse=True)
+
+    return sorted_cities
+
+def vehicle_truck_ranking():
+    # Fetch the vehicle data
+    vehicle_data = get_new_vehicle()
+
+    # Initialize a dictionary to hold the total value for each city
+    city_totals = {}
+
+    # For each entry in the vehicle data...
+    for entry in vehicle_data:
+        city_name = entry[0]
+        value = entry[2]
+
+        # If this city is not yet in the dictionary, add it with a total value of 0
+        if city_name not in city_totals:
+            city_totals[city_name] = 0
+
+        # Add the value for this entry to the city's total
+        if entry[1] == "大貨車":
+            city_totals[city_name] += value
+
+    # Now we want to sort the cities by total value. We'll use a list of tuples for this.
+    # Each tuple will be (city_name, total_value), and we'll sort them by total_value.
+    sorted_cities = sorted(city_totals.items(), key=lambda item: item[1], reverse=True)
+
+    return sorted_cities
+
+def vehicle_bus_ranking():
+    # Fetch the vehicle data
+    vehicle_data = get_new_vehicle()
+
+    # Initialize a dictionary to hold the total value for each city
+    city_totals = {}
+
+    # For each entry in the vehicle data...
+    for entry in vehicle_data:
+        city_name = entry[0]
+        value = entry[2]
+
+        # If this city is not yet in the dictionary, add it with a total value of 0
+        if city_name not in city_totals:
+            city_totals[city_name] = 0
+
+        # Add the value for this entry to the city's total
+        if entry[1] == "大客車":
+            city_totals[city_name] += value
+
+    # Now we want to sort the cities by total value. We'll use a list of tuples for this.
+    # Each tuple will be (city_name, total_value), and we'll sort them by total_value.
+    sorted_cities = sorted(city_totals.items(), key=lambda item: item[1], reverse=True)
+
+    return sorted_cities
