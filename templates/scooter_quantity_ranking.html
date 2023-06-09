@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  第十組-機車數排行
+  {{year}}年{{month}}月-全國機車數量排行
 {% endblock %}
 
 {% block headmessage %}
@@ -11,61 +11,46 @@
 {% block content %}
 <style>
   .chart-container {
-    display: flex;
-  }
-
-  .chart-container canvas {
-    flex: 1; /* 使用flex屬性使表格容器自動調整大小 */
-    max-width: 50%; /* 設置表格容器最大寬度為50% */
-    height: 400px;
+    width: 100%;
+    height: 550px; /* 设置图表容器的高度 */
+    margin: auto;
   }
 </style>
 
-<p style="font-size: 20px;text-align: center;font-weight: bold;">臺北市</p>
+<p style="font-size: 20px; text-align: center; font-weight: bold;">{{year}}年{{month}}月-全國機車數量排行</p>
 <div class="chart-container">
   <canvas id="myChart"></canvas>
-  <canvas id="myChart2"></canvas>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
 <script>
   const ctx = document.getElementById('myChart');
-  const ctx2 = document.getElementById('myChart2');
-
-  // Chart configurations...
-
+  
+  // 獲取車輛數量排行資料
+  const cityNames = {{ city_names|safe }};
+  const values = {{ values|safe }};
+  // 配置圖表
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['1', '2', '3','4','5','6'],
+      labels: cityNames,
       datasets: [{
         label: '車輛數量',
-        data: [ 1,2,3,4,5 ],
-        backgroundColor: ['orange'],
+        data: values,
+        backgroundColor: 'orange',
         borderWidth: 1
-        
       }]
     },
     options: {
-      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
       scales: {
         y: {
-          beginAtZero: true
-        }
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: '一月',
-          position: 'top',
-          font: {
-            size: 16,
-            weight: 'bold'
-          }
-        }
+          beginAtZero: false, // 设置为false，纵轴不从零开始
+        min: 1 // 设置纵轴的起始值为10
       }
-    }
-  });
+    },
+  }
+});
 </script>
 {% endblock %}

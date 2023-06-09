@@ -14,7 +14,7 @@ from Data_masage.six_city_students_and_vehicle import get_students_renew_time as
                                                     get_six_city_new_population_quantity as svp,get_fot_car_quantity as gfcq,get_fot_motorcycle_quantity as gfmq,get_fot_vehicle_quantity as gfvq
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
+from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income
 
 def index(request):
     
@@ -27,16 +27,16 @@ def index(request):
 
 
 
-def vehicle_quantity_ranking(request):
-    print(gnv())  
+def vehicle_quantity_ranking(request):  
     vehicle_data = vr()  # 調用vehicle_ranking()函數獲取數據
-
+    time = gvlyrm()
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
 
-
     context = {
+        'year' : time[0],
+        'month' : time[1],
         'city_names': city_names,
         'values': values,
     }
@@ -47,20 +47,22 @@ def vehicle_quantity_ranking(request):
 def car_quantity_ranking(request):
 
     vehicle_data = vehicle_car_ranking()  # 調用vehicle_ranking()函數獲取數據
-
+    time = gvlyrm()
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
 
 
     context = {
+        'year' : time[0],
+        'month' : time[1],
         'city_names': city_names,
         'values': values,
     }
 
    
 
-    return render(request, 'vehicle_quantity_ranking.html',context )
+    return render(request, 'car_quantity_ranking.html',context )
     
 
     
@@ -69,62 +71,74 @@ def car_quantity_ranking(request):
 def scooter_quantity_ranking(request):
 
     vehicle_data = vehicle_sc_ranking()  # 調用vehicle_ranking()函數獲取數據
-
+    time = gvlyrm()
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
 
 
     context = {
+        'year' : time[0],
+        'month' : time[1],
         'city_names': city_names,
         'values': values,
     }
 
    
 
-    return render(request, 'vehicle_quantity_ranking.html',context )
+    return render(request, 'scooter_quantity_ranking.html',context )
     
 
 def truck_quantity_ranking(request):
 
     vehicle_data = vehicle_truck_ranking()  # 調用vehicle_ranking()函數獲取數據
-
+    time = gvlyrm()
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
 
 
     context = {
+        'year' : time[0],
+        'month' : time[1],
         'city_names': city_names,
         'values': values,
     }
 
    
 
-    return render(request, 'vehicle_quantity_ranking.html',context )
+    return render(request, 'truck_quantity_ranking.html',context )
     
 def bus_quantity_ranking(request):
 
     vehicle_data = vehicle_bus_ranking()  # 調用vehicle_ranking()函數獲取數據
-
+    time = gvlyrm()
     # 將數據轉換為所需的格式
     city_names = [entry[0] for entry in vehicle_data]  # 提取城市名稱
     values = [entry[1] for entry in vehicle_data]  # 提取車輛數量
 
 
     context = {
+        'year' : time[0],
+        'month' : time[1],
         'city_names': city_names,
         'values': values,
     }
 
    
 
-    return render(request, 'vehicle_quantity_ranking.html',context )
+    return render(request, 'bus_quantity_ranking.html',context )
 
 def vehicle_growing_up_all(request):
 
+    vehicle_data_sorted_2021 = get_all_vehicle_until_income_renew()
+    income_data_sorted = get_Household_income()
+
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'vehicle_data_sorted_2021': vehicle_data_sorted_2021,
+        'income_data_sorted': income_data_sorted,
+    }
     return render(request, 'vehicle_growing_up_all.html', locals())
 
 def vehicle_growing_up_TP(request):
@@ -165,8 +179,14 @@ def vehicle_growing_up_KH(request):
 
 def Income_and_vehicle_all(request):
 
+    vehicle_data_sorted_2021 = get_all_vehicle_until_income_renew()
+    income_data_sorted = get_Household_income()
+
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'vehicle_data_sorted_2021': vehicle_data_sorted_2021,
+        'income_data_sorted': income_data_sorted,
+    }
     return render(request, 'Income_and_vehicle_all.html', locals())
 
 def Income_and_vehicle_car(request):

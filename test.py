@@ -36,7 +36,7 @@ def get_Household_income():
 
     return income_data_sorted
 
-def get_all_vehicle_until_income_renew():
+def get_all_vehicle_until_income_renew(city_name):
     # Get the latest year from Household_income data
     max_year = get_income_renew_time()
 
@@ -54,9 +54,14 @@ def get_all_vehicle_until_income_renew():
 
     # Sort by year, then by city name according to the order in city_ordering
     vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    vehicle_count = {}
+    for vehicle in vehicle_data_sorted:
+        return(f"Year: {vehicle[0]}, City: {vehicle[1]}, Vehicle Type: {vehicle[2]}, Value: {vehicle[3]}")
 
-    return vehicle_data_sorted
 
+
+
+print(get_all_vehicle_until_income_renew("臺北市"))
 
 
 

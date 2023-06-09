@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  第十組-全國車輛數排行
+  {{year}}年{{month}}月-全國車輛數排行
 {% endblock %}
 
 {% block headmessage %}
@@ -17,7 +17,7 @@
   }
 </style>
 
-<p style="font-size: 20px; text-align: center; font-weight: bold;">全國車輛數排行</p>
+<p style="font-size: 20px; text-align: center; font-weight: bold;"> {{year}}年{{month}}月-全國車輛數排行</p>
 <div class="chart-container">
   <canvas id="myChart"></canvas>
 </div>
@@ -47,7 +47,7 @@
       scales: {
         y: {
           beginAtZero: false, // 设置为false，纵轴不从零开始
-        min: 10000 // 设置纵轴的起始值为10
+        min: 1 // 设置纵轴的起始值为10
       }
     },
   }
