@@ -10,6 +10,22 @@ from dateutil.relativedelta import relativedelta
 from Data_masage.tack_out import get_six_citys_Data as gscd
 from Data_masage.vehicle_income_growing_compare import get_income_renew_time as girt , get_Household_income as ghi
 
+def get_six_city_vehicle_data_as_income_renew_year():
+    # Fetch the vehicle data
+    latest_year = girt()
+    city_names = gscd()
+
+    vehicles = Vehicle.objects.filter(year=latest_year, month=12, city_name__in=city_names)#一律取Household_income最新年分12月
+    city_values = {}
+    for vehicle in vehicles:
+        if vehicle.city_name in city_values:
+            city_values[vehicle.city_name] += vehicle.value
+        else:
+            city_values[vehicle.city_name] = vehicle.value
+
+    result = [[city, city_values.get(city, 0)] for city in city_names]
+    return result
+
 def get_six_city_car_data_as_income_renew_year():
     # Fetch the vehicle data
     latest_year = girt()
