@@ -19,7 +19,7 @@ def get_income_renew_time():
     return int(max_year)
 
 
-def get_Household_income():
+def get_all_Household_income():
     # Fetch all Household_income data
     income_data = Household_income.objects.all()
 
@@ -35,6 +35,29 @@ def get_Household_income():
     income_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
 
     return income_data_sorted
+
+def get_Household_income(city_name):
+    # Fetch all Household_income data for the specified city
+    income_data = Household_income.objects.filter(city_name=city_name)
+
+    # Convert to list of lists and sort
+    income_data_sorted = []
+    for income in income_data:
+        income_data_sorted.append([income.year, income.city_name, income.Avg_number_of_househods, income.Avg_number_of_employment, income.Avg_number_of_income, income.Total])
+
+    # Sort by year in ascending order
+    income_data_sorted.sort(key=lambda x: x[0])
+
+    # Get the most recent year
+    most_recent_year = income_data_sorted[-1][0]
+
+    # Filter data for each year until the most recent year
+    filtered_data = [item[5] for item in income_data_sorted if item[0] <= most_recent_year]
+
+    return filtered_data
+
+
+
 
 def get_all_vehicle_until_income_renew():
     # Get the latest year from Household_income data

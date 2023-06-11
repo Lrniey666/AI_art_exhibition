@@ -19,61 +19,28 @@ def get_income_renew_time():
     return int(max_year)
 
 
-def get_Household_income():
-    # Fetch all Household_income data
-    income_data = Household_income.objects.all()
+def get_Household_income(city_name):
+    # Fetch all Household_income data for the specified city
+    income_data = Household_income.objects.filter(city_name=city_name)
 
     # Convert to list of lists and sort
     income_data_sorted = []
     for income in income_data:
         income_data_sorted.append([income.year, income.city_name, income.Avg_number_of_househods, income.Avg_number_of_employment, income.Avg_number_of_income, income.Total])
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # Sort by year in ascending order
+    income_data_sorted.sort(key=lambda x: x[0])
 
-    # Sort by year, then by city name according to the order in city_ordering
-    income_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    # Get the most recent year
+    most_recent_year = income_data_sorted[-1][0]
 
-    return income_data_sorted
-class IncomeCalculator:
-    target_city = '臺北市'
+    # Filter data for each year until the most recent year
+    filtered_data = [item[5] for item in income_data_sorted if item[0] <= most_recent_year]
 
-    @staticmethod
-    def get_total_income_by_tp():
-        # Fetch all Household_income data
-        income_data = Household_income.objects.all()
+    return filtered_data
 
-        # Convert to list of lists and sort
-        income_data_sorted = []
-        for income in income_data:
-            income_data_sorted.append([income.year, income.city_name, income.Avg_number_of_househods, income.Avg_number_of_employment, income.Avg_number_of_income, income.Total])
 
-        # Get the city name ordering
-        city_ordering = [city_info[1] for city_info in gcn()]
 
-        # Sort by year, then by city name according to the order in city_ordering
-        income_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
-
-        # Calculate total income for the specified city
-        total_income_tp = 0
-        for data in income_data_sorted:
-            year = data[0]
-            current_city = data[1]
-            income = data[5]
-
-            if current_city == IncomeCalculator.target_city:
-                if year in total_income_tp:
-                    total_income_tp[year].append(income)
-                else:
-                    total_income_tp[year] = [income]
-                            # Create an instance of the class
-        calculator = IncomeCalculator()
-
-        # Call the method on the instance
-        total_income_tp = calculator.get_total_income_by_tp()
-
-        return total_income_tp
-    print("class IncomeCalculator")
 def get_all_vehicle_until_income_renew():
     # Get the latest year from Household_income data
     max_year = get_income_renew_time()
@@ -299,9 +266,4 @@ def get_kh_vehicle_until_income_renew():
 
     return kh_vehicle_totals
 
-
-
-
-
-
-
+print(get_Household_income(city_name="高雄市"))

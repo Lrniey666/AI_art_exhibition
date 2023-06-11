@@ -14,6 +14,7 @@
 <script>
   // 獲取車輛數量排行資料
   const tp_vehicle_totals = {{ tp_vehicle_totals|safe }};
+  const filtered_data = {{filtered_data|safe}};
   // 建立圖表
   const year = Object.keys(tp_vehicle_totals);
   const values = Object.values(tp_vehicle_totals);
@@ -27,7 +28,14 @@
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1
-    }
+    },
+    {
+      label: '年收入',
+      data: filtered_data, // Modify this line to use the correct index,
+      fill: false,
+      borderColor: 'red',
+      tension: 0.1
+      },
   ]
   };
 

@@ -15,7 +15,8 @@ from Data_masage.six_city_students_and_vehicle import get_students_renew_time as
                                                     get_six_city_new_population_quantity as svp,get_fot_car_quantity as gfcq,get_fot_motorcycle_quantity as gfmq,get_fot_vehicle_quantity as gfvq
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income,get_tp_vehicle_until_income_renew,get_np_vehicle_until_income_renew,get_ty_vehicle_until_income_renew,get_tc_vehicle_until_income_renew,get_tn_vehicle_until_income_renew,get_kh_vehicle_until_income_renew
+from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income,get_tp_vehicle_until_income_renew,get_np_vehicle_until_income_renew,get_ty_vehicle_until_income_renew,get_tc_vehicle_until_income_renew,get_tn_vehicle_until_income_renew,get_kh_vehicle_until_income_renew,get_all_Household_income
+from .models import Household_income
 
 def index(request):
     
@@ -133,7 +134,7 @@ def bus_quantity_ranking(request):
 def vehicle_growing_up_all(request):
 
     total_vehicles_by_city = get_all_vehicle_until_income_renew()
-    income_data_sorted = get_Household_income()
+    income_data_sorted = get_all_Household_income()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
@@ -143,55 +144,68 @@ def vehicle_growing_up_all(request):
     return render(request, 'vehicle_growing_up_all.html', locals())
 
 def vehicle_growing_up_TP(request):
-
+    city_name = "臺北市"
     tp_vehicle_totals = get_tp_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'tp_vehicle_totals' : tp_vehicle_totals
+        'tp_vehicle_totals' : tp_vehicle_totals,
+        'filtered_data' : filtered_data
     }
     return render(request, 'vehicle_growing_up_TP.html', locals())
 
 def vehicle_growing_up_NP(request):
-
+    city_name = "新北市"
     np_vehicle_totals = get_np_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'np_vehicle_totals' : np_vehicle_totals
+        'np_vehicle_totals' : np_vehicle_totals,
+        'filtered_data' : filtered_data
     }
     return render(request, 'vehicle_growing_up_NP.html', locals())
 
 def vehicle_growing_up_TY(request):
+    city_name = "桃園市"
     ty_vehicle_totals = get_ty_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'ty_vehicle_totals' : ty_vehicle_totals
+        'ty_vehicle_totals' : ty_vehicle_totals,
+        'filtered_data' : filtered_data
         }
     return render(request, 'vehicle_growing_up_TY.html', locals())
 
 def vehicle_growing_up_TC(request):
-
+    city_name = "臺中市"
     tc_vehicle_totals = get_tc_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'tc_vehicle_totals' : tc_vehicle_totals
+        'tc_vehicle_totals' : tc_vehicle_totals,
+        'filtered_data' : filtered_data
     }
     return render(request, 'vehicle_growing_up_TC.html', locals())
 
 def vehicle_growing_up_TN(request):
-
+    city_name = "臺南市"
     tn_vehicle_totals = get_tn_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'tn_vehicle_totals' : tn_vehicle_totals
+        'tn_vehicle_totals' : tn_vehicle_totals,
+        'filtered_data' : filtered_data
     }
     return render(request, 'vehicle_growing_up_TN.html', locals())
 
 def vehicle_growing_up_KH(request):
-
+    city_name = "高雄市"
     kh_vehicle_totals = get_kh_vehicle_until_income_renew()
+    filtered_data = get_Household_income(city_name)
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'kh_vehicle_totals' : kh_vehicle_totals
+        'kh_vehicle_totals' : kh_vehicle_totals,
+        'filtered_data' : filtered_data
     }
     return render(request, 'vehicle_growing_up_KH.html', locals())
 
