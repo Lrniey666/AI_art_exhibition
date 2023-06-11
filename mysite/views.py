@@ -15,7 +15,7 @@ from Data_masage.six_city_students_and_vehicle import get_students_renew_time as
                                                     get_six_city_new_population_quantity as svp,get_fot_car_quantity as gfcq,get_fot_motorcycle_quantity as gfmq,get_fot_vehicle_quantity as gfvq
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income
+from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income,get_tp_vehicle_until_income_renew,get_np_vehicle_until_income_renew,get_ty_vehicle_until_income_renew,get_tc_vehicle_until_income_renew,get_tn_vehicle_until_income_renew,get_kh_vehicle_until_income_renew
 
 def index(request):
     
@@ -132,50 +132,67 @@ def bus_quantity_ranking(request):
 
 def vehicle_growing_up_all(request):
 
-    vehicle_data_sorted_2021 = get_all_vehicle_until_income_renew()
+    total_vehicles_by_city = get_all_vehicle_until_income_renew()
     income_data_sorted = get_Household_income()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'vehicle_data_sorted_2021': vehicle_data_sorted_2021,
+        'total_vehicles_by_city': total_vehicles_by_city,
         'income_data_sorted': income_data_sorted,
     }
     return render(request, 'vehicle_growing_up_all.html', locals())
 
 def vehicle_growing_up_TP(request):
 
+    tp_vehicle_totals = get_tp_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'tp_vehicle_totals' : tp_vehicle_totals
+    }
     return render(request, 'vehicle_growing_up_TP.html', locals())
 
 def vehicle_growing_up_NP(request):
 
+    np_vehicle_totals = get_np_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'np_vehicle_totals' : np_vehicle_totals
+    }
     return render(request, 'vehicle_growing_up_NP.html', locals())
 
 def vehicle_growing_up_TY(request):
-
+    ty_vehicle_totals = get_ty_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'ty_vehicle_totals' : ty_vehicle_totals
+        }
     return render(request, 'vehicle_growing_up_TY.html', locals())
 
 def vehicle_growing_up_TC(request):
 
+    tc_vehicle_totals = get_tc_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'tc_vehicle_totals' : tc_vehicle_totals
+    }
     return render(request, 'vehicle_growing_up_TC.html', locals())
 
 def vehicle_growing_up_TN(request):
 
+    tn_vehicle_totals = get_tn_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'tn_vehicle_totals' : tn_vehicle_totals
+    }
     return render(request, 'vehicle_growing_up_TN.html', locals())
 
 def vehicle_growing_up_KH(request):
 
+    kh_vehicle_totals = get_kh_vehicle_until_income_renew()
     # 你可能需要在這裡提供給模板一些上下文資料
-    context = {}
+    context = {
+        'kh_vehicle_totals' : kh_vehicle_totals
+    }
     return render(request, 'vehicle_growing_up_KH.html', locals())
 
 def Income_and_vehicle_all(request):

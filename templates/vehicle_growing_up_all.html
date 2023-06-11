@@ -13,13 +13,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   // 獲取車輛數量排行資料
-  const vehicle_data_sorted_2021 = {{ vehicle_data_sorted_2021|safe }};
+  const total_vehicles_by_city = {{ total_vehicles_by_city|safe }};
   const income_data_sorted = {{income_data_sorted|safe}};
   
   // 建立圖表
-  const cityNames = vehicle_data_sorted_2021.map(item => item[1]);
-  const values = vehicle_data_sorted_2021.map(item => item[3]);
-  const Incometotal = income_data_sorted.map(item => item[6]);
+  const cityNames = Object.keys(total_vehicles_by_city);
+  const values = Object.values(total_vehicles_by_city);
+  const Incometotal = income_data_sorted.map(item => item[5]);
 
   const labels = cityNames;
   const data = {
@@ -33,7 +33,7 @@
     },
     {
       label: '年收入',
-      data: income_data_sorted.map(item => item[5]), // Modify this line to use the correct index,
+      data: Incometotal, // Modify this line to use the correct index,
       fill: false,
       borderColor: 'red',
       tension: 0.1
@@ -43,11 +43,12 @@
 
   const config = {
     type: 'line',
-    data: data,options: {
+    data: data,
+    options: {
       plugins: {
         title: {
           display: true,
-          text: '2021年 車輛數量和年收入比較', // 標題文字
+          text: `2021年全國車數成長與收入`, // 標題文字
           font: {
             size: 20, // 標題字體大小
             weight: 'bold' // 標題字體粗細
