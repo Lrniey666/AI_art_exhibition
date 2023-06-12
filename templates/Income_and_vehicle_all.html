@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  第十組-全國
+2021年 全部車輛數量和年收入比較
 {% endblock %}
 
 {% block headmessage %}
@@ -17,8 +17,8 @@
   const income_data_sorted = {{income_data_sorted|safe}};
   
   // 建立圖表
-  const cityNames = vehicle_data_sorted_2021.map(item => item[1]);
-  const values = vehicle_data_sorted_2021.map(item => item[3]);
+  const cityNames = vehicle_data_sorted_2021.map(item => item[0]);
+  const values = vehicle_data_sorted_2021.map(item => item[1]);
   const Incometotal = income_data_sorted.map(item => item[6]);
 
   const labels = cityNames;
@@ -47,7 +47,7 @@
       plugins: {
         title: {
           display: true,
-          text: '2021年 車輛數量和年收入比較', // 標題文字
+          text: '2021年 全部車輛數量和年收入比較', // 標題文字
           font: {
             size: 20, // 標題字體大小
             weight: 'bold' // 標題字體粗細
