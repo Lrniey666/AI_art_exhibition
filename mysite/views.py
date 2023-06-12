@@ -223,7 +223,7 @@ def Income_and_vehicle_all(request):
 
 def Income_and_vehicle_car(request):
 
-    # 你可能需要在這裡提供給模板一些上下文資料
+    # 你可能需要在這裡提供給模板一些上下文資料10102322
     context = {}
     return render(request, 'Income_and_vehicle_car.html', locals())
 
