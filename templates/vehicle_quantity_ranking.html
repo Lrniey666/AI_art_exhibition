@@ -12,17 +12,17 @@
 <style>
   .chart-container {
     width: 100%;
-    height: 550px; /* 设置图表容器的高度 */
+    height: 550px;
     margin: auto;
   }
 </style>
 
-<p style="font-size: 20px; text-align: center; font-weight: bold;"> {{year}}年{{month}}月-全國車輛數排行</p>
+<p style="font-size: 20px; text-align: center; font-weight: bold;">{{year}}年{{month}}月-全國車輛數排行</p>
 <div class="chart-container">
   <canvas id="myChart"></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <script>
   const ctx = document.getElementById('myChart');
   
@@ -31,26 +31,86 @@
   const values = {{ values|safe }};
   // 配置圖表
   new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: cityNames,
-      datasets: [{
-        label: '車輛數量',
-        data: values,
-        backgroundColor: 'orange',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
+  type: 'bar',
+  data: {
+    labels: cityNames,
+    datasets: [{
+      label: '車輛數量',
+      data: values,
+      backgroundColor: 'orange',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+        callbacks: {
+          label: function(context) {
+            var label = context.dataset.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += context.parsed.y.toLocaleString(); // 格式化数据标签
+            }
+            return label;
+          },
+          labelColor: function(context) {
+            return {
+              borderColor: 'rgba(0, 0, 0, 0)',
+              backgroundColor: 'orange',
+              color: 'white',
+              borderRadius: 4,
+            };
+          }
+        }
+      },
+        legend: {
+          display: true,
+        },
+      },
       scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: '城市',
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+          },
+        },
         y: {
-          beginAtZero: false, // 设置为false，纵轴不从零开始
-        min: 1 // 设置纵轴的起始值为10
-      }
+          display: true,
+          title: {
+            display: true,
+            text: '車輛數量',
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+            beginAtZero: false,
+            min: 1,
+          },
+        },
+      },
     },
-  }
-});
+  });
 </script>
 {% endblock %}

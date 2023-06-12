@@ -42,15 +42,75 @@
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+        callbacks: {
+          label: function(context) {
+            var label = context.dataset.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += context.parsed.y.toLocaleString(); // 格式化数据标签
+            }
+            return label;
+          },
+          labelColor: function(context) {
+            return {
+              borderColor: 'rgba(0, 0, 0, 0)',
+              backgroundColor: 'orange',
+              color: 'white',
+              borderRadius: 4,
+            };
+          }
+        }
+      },
+        legend: {
+          display: true,
+        },
+      },
       scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: '城市',
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+          },
+        },
         y: {
-          beginAtZero: false, // 设置为false，纵轴不从零开始
-        min: 1 // 设置纵轴的起始值为10
-      }
+          display: true,
+          title: {
+            display: true,
+            text: '車輛數量',
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+            beginAtZero: true,
+            min: 0,
+          },
+        },
+      },
     },
-  }
-});
+  });
 </script>
 {% endblock %}

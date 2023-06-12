@@ -20,21 +20,28 @@ def get_income_renew_time():
 
 
 def get_all_Household_income():
-    # Fetch all Household_income data
+    # 获取所有 Household_income 数据
     income_data = Household_income.objects.all()
 
-    # Convert to list of lists and sort
-    income_data_sorted = []
+    # 创建一个字典用于存储每个年度的收入总和
+    income_totals = {}
+
     for income in income_data:
-        income_data_sorted.append([income.year, income.city_name, income.Avg_number_of_househods, income.Avg_number_of_employment, income.Avg_number_of_income, income.Total])
+        year = income.year
+        income_amount = income.Total
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+        # 检查字典中是否已存在该年份的收入总和，如果不存在则创建一个新的列表
+        if year not in income_totals:
+            income_totals[year] = 0
 
-    # Sort by year, then by city name according to the order in city_ordering
-    income_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+        # 将该城市的收入添加到对应年份的总和中
+        income_totals[year] += income_amount
 
-    return income_data_sorted
+    # 返回每个年度的收入总和
+    income_data_formatted = income_totals
+
+    return income_data_formatted
+
 
 def get_Household_income(city_name):
     # Fetch all Household_income data for the specified city
@@ -47,7 +54,6 @@ def get_Household_income(city_name):
 
     # Sort by year in ascending order
     income_data_sorted.sort(key=lambda x: x[0])
-
     # Get the most recent year
     most_recent_year = income_data_sorted[-1][0]
 
@@ -60,25 +66,39 @@ def get_Household_income(city_name):
 
 
 def get_all_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
+   # Get the latest year from Household_income data
     max_year = get_income_renew_time()
 
     # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year=max_year, month=12)
+    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
     
 
-    # Calculate total vehicles by city
-    total_vehicles_by_city = {}
+    # Convert to list of lists and sort
+    vehicle_data_sorted = []
     for vehicle in vehicle_data:
-        city_name = vehicle.city_name
-        vehicle_count = vehicle.value
+        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
 
-        if city_name not in total_vehicles_by_city:
-            total_vehicles_by_city[city_name] = 0
+    # Get the city name ordering
+    city_ordering = [city_info[1] for city_info in gcn()]
 
-        total_vehicles_by_city[city_name] += vehicle_count
+    # Sort by year, then by city name according to the order in city_ordering
+    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
 
-    return total_vehicles_by_city
+    # Calculate total vehicles for each year in Taipei City
+    all_vehicle_totals = {}
+    for data in vehicle_data_sorted:
+        year = data[0]
+        city_name = data[1]
+        vehicle_count = data[3]
+
+        if city_name == '臺北市' or city_name == '新北市' or city_name == '桃園市'or city_name == '臺中市'or city_name == '臺南市'or city_name == '高雄市'or city_name == '新竹縣'or city_name == '苗栗縣'or city_name == '彰化縣'or city_name == '南投縣'or city_name == '雲林縣'or city_name == '嘉義縣'or city_name == '屏東縣'or city_name == '宜蘭縣'or city_name == '花蓮縣'or city_name == '臺東縣'or city_name == '澎湖縣'or city_name == '金門縣'or city_name == '連江縣'or city_name == '基隆市'or city_name == '新竹市'or city_name == '嘉義市':
+            if year in all_vehicle_totals:
+                all_vehicle_totals[year] += vehicle_count
+            else:
+                all_vehicle_totals[year] = vehicle_count
+
+    return all_vehicle_totals
+
 
 def get_tp_vehicle_until_income_renew():
     # Get the latest year from Household_income data

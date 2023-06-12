@@ -133,13 +133,13 @@ def bus_quantity_ranking(request):
 
 def vehicle_growing_up_all(request):
 
-    total_vehicles_by_city = get_all_vehicle_until_income_renew()
-    income_data_sorted = get_all_Household_income()
+    all_vehicle_totals = get_all_vehicle_until_income_renew()
+    income_data_formatted = get_all_Household_income()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'total_vehicles_by_city': total_vehicles_by_city,
-        'income_data_sorted': income_data_sorted,
+        'all_vehicle_totals': all_vehicle_totals,
+        'income_data_formatted': income_data_formatted,
     }
     return render(request, 'vehicle_growing_up_all.html', locals())
 
