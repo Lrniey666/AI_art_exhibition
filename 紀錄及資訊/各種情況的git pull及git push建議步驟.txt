@@ -1,6 +1,6 @@
 cd C:/python-10
 
-git pull建議步驟:
+git pull建議步驟://///////////////
 
 git pull
 
@@ -21,7 +21,11 @@ git push -f origin master
 git pull
 
 
-git push建議步驟:
+///////////////////////////////////
+
+
+git push建議步驟://///////////////
+
 
 git status//哪些文件已經被修改過
 
@@ -31,11 +35,66 @@ git commit -m "Data_masage.vehicle_income_growing_compare運用於六都車數�
 
 git push//沒成功逝世以下指令
 
+確認分支：
+git branch
+
+上傳的版本不同：
+{
+先暫存:
+git stash
+
 先合併:
 git pull --rebase
 
+直接放棄更改:
+git checkout -- .
+
 強制取代:
 git config --global push.default simple
+}
+
+分支錯誤：
+{
+更改推送到遠程的 master 分支:
+
+git push origin HEAD:master
+
+更改推送到遠程的 main 分支:
+
+git push origin HEAD:main 
+更改推送到遠程的與本地同名的 main 分支:
+
+git push origin HEAD
+設定每次 git push 的時候都自動推送到遠程的同名分支
+git config --global push.default current
+
+}
+
+///////////////////////////////////
+
+程式專案初次推送至 GitHub步驟://///////////////
+0.(安裝 Git)
+
+1：建立個新的同名 GitHub 儲存庫
+
+2：在本地電腦安裝並設定 Git
+
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+
+3：將本地專案推送至 GitHub
+
+cd ...
+
+git init
+
+git add .
+
+git add .
+
+git commit -m "Initial commit"
+
+///////////////////////////////////
 
 
 高速開網站:
