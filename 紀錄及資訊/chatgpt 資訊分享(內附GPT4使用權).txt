@@ -43,6 +43,9 @@ https://chat.openai.com/share/89d6a544-5012-4c3d-9282-f22e782d021f
 22 Unique Cities, 1 Truck
 https://chat.openai.com/share/7ba44a9f-77c3-4d64-8fff-fe6913cb352f
 
+測試django網頁套件
+https://chat.openai.com/share/1bf09b63-6753-4b95-90a8-3a84373dafb2
 
-
+Add get_six_city_students_proportion()
+https://chat.openai.com/share/c2ba697e-2250-42c6-98b0-550f8cfe3cc8
 
