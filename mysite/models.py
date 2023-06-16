@@ -1,3 +1,4 @@
+#models.py:
 from django.db import models
 
 id = models.AutoField(primary_key=True)
@@ -38,7 +39,7 @@ class Universities_and_colleges_Student_status(models.Model):
     NumberOfFemales = models.CharField(max_length=255)
     Total = models.CharField(max_length=255)
 
-class Population_stats(models.Model):
+class Population_stats(models.Model):#注意這不小心寫成大寫了
     Year = models.CharField(max_length=255)  
     CityName = models.CharField(max_length=255)
     CountyCode = models.CharField(max_length=255)

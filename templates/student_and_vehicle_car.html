@@ -1,56 +1,95 @@
 {% extends 'base.html' %}
 
 {% block title %}
-六都學生與小汽車比例
+2021年-小汽車
 {% endblock %}
 
 {% block headmessage %}
-  <h1>臺灣車輛資訊網</h1>
+<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
 {% endblock %}
 
 {% block content %}
-
-<canvas id="myChart"></canvas>
+<canvas id="barChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const six_city_new_population_quantity = {{ six_city_new_population_quantity|safe }};
-  const fot_car_quantity = {{fot_car_quantity|safe}};
+  // 獲取車輛數量排行資料
+  const six_city_car_proportion = {{ six_city_car_proportion|safe }};
+  const six_city_students_proportion = {{six_city_students_proportion|safe}};
   
   // 建立圖表
-  const cityNames = fot_car_quantity.map(item => item[0]);
-  const values = fot_car_quantity.map(item => item[1]);
-  const quantity = six_city_new_population_quantity.map(item => item[3]);
+  const cityNames = six_city_car_proportion.map(item => item[0]);
+  const values = six_city_car_proportion.map(item => item[1]);
 
   const labels = cityNames;
   const data = {
     labels: labels,
-    datasets: [{
-      label: '車輛數量',
-      data: values,
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    },
-    {
-      label: '學生人數',
-      data: quantity, // Modify this line to use the correct index,
-      fill: false,
-      borderColor: 'red',
-      tension: 0.1
+    datasets: [
+      {
+        label: '汽車比例',
+        data: values.map(value => (value * 100).toFixed(2)), // 將數值轉換為百分比形式
+        backgroundColor: 'blue',
+        borderColor: 'blue',
+        borderWidth: 1
       },
-  ]
+      {
+        label: '學生比例',
+        data: six_city_students_proportion.map(item => (item[1] * 100).toFixed(2)), // 將數值轉換為百分比形式
+        backgroundColor: 'red',
+        borderColor: 'red',
+        borderWidth: 1,
+        yAxisID: 'y1' // 設置 yAxisID 為 'y1'
+      }
+    ]
   };
 
+
   const config = {
-    type: 'line',
-    data: data,options: {
+    type: 'bar',
+    data: data,
+    options: {
       plugins: {
         title: {
           display: true,
-          text: '六都學生與小汽車比例', // 標題文字
+          text: '2021年-小汽車',
           font: {
-            size: 20, // 標題字體大小
-            weight: 'bold' // 標題字體粗細
+            size: 20,
+            weight: 'bold'
+          }
+        }
+      },
+      scales: {
+        y: {
+          position: 'left', // 左邊軸
+          display: true,
+          title: {
+            display: true,
+            text: '汽車比例',
+            font: {
+              size: 16,
+              weight: 'bold'
+            }
+          },
+          ticks: {
+          callback: function(value, index, values) {
+            return (value)+ '%'; // 將數值轉換為百分比形式
+            }
+          }
+        },
+        y1: {
+          position: 'right', // 右邊軸
+          display: true,
+          title: {
+            display: true,
+            text: '學生比例',
+            font: {
+              size: 16,
+              weight: 'bold'
+            }
+          },
+          ticks: {
+          callback: function(value, index, values) {
+            return (value) + '%'; // 將數值轉換為百分比形式
+            }
           }
         }
       }
@@ -59,7 +98,7 @@
 
   // 在頁面加載完成後繪製圖表
   document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = document.getElementById('barChart').getContext('2d');
     const chart = new Chart(ctx, config);
   });
 </script>

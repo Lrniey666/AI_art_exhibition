@@ -53,6 +53,8 @@ def get_six_city_car_data_as_income_renew_year():
     return result
 
 def get_six_city_scooter_data_as_income_renew_year():
+    
+
     # Fetch the vehicle data
     latest_year = find_old_time_vic()
     city_names = gscd()
@@ -69,6 +71,8 @@ def get_six_city_scooter_data_as_income_renew_year():
     return result
 
 def get_new_Household_income():
+    #[年份, 城市名稱, 平均家戶人數, 平均家戶就業人數, 平均家戶所得收入人數, 總收入(單位：百萬(M))]
+    
     # Fetch the target year
     target_year = str(find_old_time_vic())
     #print(target_year)
@@ -94,6 +98,9 @@ def get_new_Household_income():
     return income_data_sorted
 
 def get_six_city_new_population_quantity_vic():
+    #返回一個包含六個城市的人口數據的列表，每個城市的數據被封裝在一個子列表中，
+    # 子列表的格式為：[城市名稱, 人口總數]
+
     # Fetch the target year
     target_year = str(find_old_time_vic())
 
@@ -114,5 +121,85 @@ def get_six_city_new_population_quantity_vic():
     city_data_list = [[city, *data] for city, data in city_data.items()]
 
     return city_data_list
+
+"""
+以下為前台較會用到的函式
+"""
+
+def get_six_city_population_avg_vehicle():
+    """
+    此函數將輸出六個城市的平均每十萬人的車輛數量。
+    輸出格式: [['城市名稱1', 車輛數量1], ['城市名稱2', 車輛數量2], ..., ['城市名稱6', 車輛數量6]]
+    """
+    vehicle_data = get_six_city_vehicle_data_as_income_renew_year()
+    population_data = get_six_city_new_population_quantity_vic()
+
+    population_dict = {data[0]: data[1] for data in population_data}
+
+    result = [[city, int(round(vehicle/population_dict[city]*100000))] for city, vehicle in vehicle_data]
+
+    return result
+
+def get_six_city_population_avg_car():
+    """
+    此函數將輸出六個城市的平均每十萬人的汽車數量。
+    輸出格式: [['城市名稱1', 汽車數量1], ['城市名稱2', 汽車數量2], ..., ['城市名稱6', 汽車數量6]]
+    """
+    car_data = get_six_city_car_data_as_income_renew_year()
+    population_data = get_six_city_new_population_quantity_vic()
+
+    population_dict = {data[0]: data[1] for data in population_data}
+
+    result = [[city, int(round(car/population_dict[city]*100000))] for city, car in car_data]
+
+    return result
+
+def get_six_city_population_avg_scooter():
+    """
+    此函數將輸出六個城市的平均每十萬人的機車數量。
+    輸出格式: [['城市名稱1', 機車數量1], ['城市名稱2', 機車數量2], ..., ['城市名稱6', 機車數量6]]
+    """
+    scooter_data = get_six_city_scooter_data_as_income_renew_year()
+    population_data = get_six_city_new_population_quantity_vic()
+
+    population_dict = {data[0]: data[1] for data in population_data}
+
+    result = [[city, int(round(scooter/population_dict[city]*100000))] for city, scooter in scooter_data]
+
+    return result
+
+def get_six_city_month_PCI():
+    """
+    此函數將輸出六個城市的人均月收入，計算方式是每個城市的家庭總收入除以城市的人口數量，再除以12，最後四捨五入到個位數。
+    (人均月收入單位：元)
+    輸出格式: [['城市名稱1', 人均月收入1], ['城市名稱2', 人均月收入2], ..., ['城市名稱6', 人均月收入6]]
+    """
+    # Fetch income data
+    income_data = get_new_Household_income()
+    income_dict = {data[1]: data[5] for data in income_data}
+
+    # Fetch population data
+    population_data = get_six_city_new_population_quantity_vic()
+    population_dict = {data[0]: data[1] for data in population_data}
+
+    # Calculate monthly per capita income (PCI)
+    result = [[city, int(round(income_dict[city]*1000000 / population_dict[city] / 12))] for city in income_dict]
+
+    return result
+
+
+if __name__ == "__main__":
+
+
+    print(find_old_time_vic())
+    print(get_six_city_vehicle_data_as_income_renew_year())
+    print(get_six_city_car_data_as_income_renew_year())
+    print(get_six_city_scooter_data_as_income_renew_year())
+    print(get_new_Household_income())
+    print(get_six_city_new_population_quantity_vic())
+    print(get_six_city_population_avg_vehicle())
+    print(get_six_city_population_avg_car())
+    print(get_six_city_students_population_avg_scooter())
+    print(get_six_city_month_PCI())
 
 

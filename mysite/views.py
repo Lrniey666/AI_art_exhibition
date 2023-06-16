@@ -10,9 +10,9 @@ from api_fetchers.UACSS_fetcher import fetch_and_store_UACSS_data as fasuad
 from api_fetchers.Population_stats_fetcher import fetch_and_store_Population_stats_data as faspsd
 from Data_masage.vehicle_quantity_ranking import get_new_vehicle as gnv,get_vehicle_latest_year_month as gvlyrm, vehicle_bus_ranking, vehicle_car_ranking,vehicle_ranking as vr, vehicle_sc_ranking, vehicle_truck_ranking
 from Data_masage.six_city_vehicle_incom_compare import get_six_city_car_data_as_income_renew_year as sccair,get_six_city_scooter_data_as_income_renew_year as scsair, get_new_Household_income as gnhi,\
-                                                    get_six_city_vehicle_data_as_income_renew_year as scvair,get_six_city_new_population_quantity_vic as npqv,find_old_time_vic as fotv
+                                                    get_six_city_vehicle_data_as_income_renew_year as scvair,get_six_city_new_population_quantity_vic as npqv,find_old_time_vic as fotv,get_six_city_population_avg_vehicle,get_six_city_month_PCI,get_six_city_population_avg_car,get_six_city_population_avg_scooter
 from Data_masage.six_city_students_and_vehicle import get_students_renew_time as gsrt,get_six_city_new_students_quantity as svs,get_population_stats_time as gpst,find_old_time as fot,\
-                                                    get_six_city_new_population_quantity as svp,get_fot_car_quantity as gfcq,get_fot_motorcycle_quantity as gfmq,get_fot_vehicle_quantity as gfvq
+                                                    get_six_city_new_population_quantity as svp,get_fot_car_quantity as gfcq,get_fot_motorcycle_quantity as gfmq,get_fot_vehicle_quantity as gfvq,get_six_city_students_proportion,get_six_city_car_proportion,get_six_city_motorcycle_proportion
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from Data_masage.vehicle_income_growing_compare import get_all_vehicle_until_income_renew,get_Household_income,get_tp_vehicle_until_income_renew,get_np_vehicle_until_income_renew,get_ty_vehicle_until_income_renew,get_tc_vehicle_until_income_renew,get_tn_vehicle_until_income_renew,get_kh_vehicle_until_income_renew,get_all_Household_income
@@ -29,7 +29,8 @@ def index(request):
 
 
 
-def vehicle_quantity_ranking(request):  
+def vehicle_quantity_ranking(request): 
+    #faspsd() 
     vehicle_data = vr()  # 調用vehicle_ranking()函數獲取數據
     time = gvlyrm()
     # 將數據轉換為所需的格式
@@ -211,56 +212,56 @@ def vehicle_growing_up_KH(request):
 
 def Income_and_vehicle_all(request):
 
-    vehicle_data_sorted_2021 = scvair()
-    income_data_sorted = gnhi()
+    six_city_population_avg_vehicl = get_six_city_population_avg_vehicle()
+    six_city_month_PCI = get_six_city_month_PCI()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'vehicle_data_sorted_2021': vehicle_data_sorted_2021,
-        'income_data_sorted': income_data_sorted,
+        'six_city_population_avg_vehicl': six_city_population_avg_vehicl,
+        'six_city_month_PCI': six_city_month_PCI,
     }
     return render(request, 'Income_and_vehicle_all.html', locals())
 
 def Income_and_vehicle_car(request):
-    vehicle_car_data_sorted_2021 = sccair()
-    income_data_sorted = gnhi()
+    six_city_population_avg_car = get_six_city_population_avg_car()
+    six_city_month_PCI = get_six_city_month_PCI()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'vehicle_car_data_sorted_2021': vehicle_car_data_sorted_2021,
-        'income_data_sorted': income_data_sorted,
+        'six_city_population_avg_car': six_city_population_avg_car,
+        'six_city_month_PCI': six_city_month_PCI,
     }
     return render(request, 'Income_and_vehicle_car.html', locals())
 
 def Income_and_vehicle_scooter(request):
 
-    vehicle_scooter_data_sorted_2021 = scsair()
-    income_data_sorted = gnhi()
+    six_city_population_avg_scooter = get_six_city_population_avg_scooter()
+    six_city_month_PCI = get_six_city_month_PCI()
 
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'vehicle_scooter_data_sorted_2021': vehicle_scooter_data_sorted_2021,
-        'income_data_sorted': income_data_sorted,
+        'six_city_population_avg_scooter': six_city_population_avg_scooter,
+        'six_city_month_PCI': six_city_month_PCI,
     }
     return render(request, 'Income_and_vehicle_scooter.html', locals())
 
 def student_and_vehicle_scooter(request):
-    six_city_new_population_quantity = svp()
-    fot_scooter_quantity = gfmq()
+    six_city_students_proportion = get_six_city_students_proportion()
+    six_city_motorcycle_proportion = get_six_city_motorcycle_proportion()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'six_city_new_population_quantity': six_city_new_population_quantity,
-        'fot_scooter_quantity' : fot_scooter_quantity
+        'six_city_students_proportion': six_city_students_proportion,
+        'six_city_motorcycle_proportion' : six_city_motorcycle_proportion
     }
     return render(request, 'student_and_vehicle_scooter.html', locals())
 
 def student_and_vehicle_car(request):
-    six_city_new_population_quantity = svp()
-    fot_car_quantity = gfcq()
+    six_city_students_proportion = get_six_city_students_proportion()
+    six_city_car_proportion = get_six_city_car_proportion()
     # 你可能需要在這裡提供給模板一些上下文資料
     context = {
-        'six_city_new_population_quantity': six_city_new_population_quantity,
-        'fot_car_quantity' : fot_car_quantity
+        'six_city_students_proportion': six_city_students_proportion,
+        'six_city_car_proportion' : six_city_car_proportion
     }
 
     return render(request, 'student_and_vehicle_car.html', locals())

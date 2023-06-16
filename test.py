@@ -1,324 +1,274 @@
+#six_city_students_and_vehicle.py
 import sys
 import os
 sys.path.append('C:\\python-10')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python10.settings'
 import django
 django.setup()
-from mysite.models import Vehicle,Household_income
+from mysite.models import Vehicle,Universities_and_colleges_Student_status as uacss,Population_stats as ps
+from Data_masage.tack_out import get_six_citys_Data as gscd
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from Data_masage.tack_out import get_city_names as gcn
 
-def get_income_renew_time():
-    # Fetch all Household_income data
-    income_data = Household_income.objects.all()
-
+def get_students_renew_time():
+    # Fetch all Universities_and_colleges_Student_status data
+    student_data = uacss.objects.all()
     # Find the max year
-    max_year = max(income.year for income in income_data)
-
+    max_year = max(student.year for student in student_data)
     return int(max_year)
 
+def get_population_stats_time():
+    # Fetch all population data
+    population_data = ps.objects.all()
 
-def get_all_Household_income():
-    # 获取所有 Household_income 数据
-    income_data = Household_income.objects.all()
+    # Find the max year
+    max_year = max(population.Year for population in population_data)
 
-    # 创建一个字典用于存储每个年度的收入总和
-    income_totals = {}
+    # Find the population data of the max year
+    population_data_max_year = ps.objects.filter(Year=max_year)
 
-    for income in income_data:
-        year = income.year
-        income_amount = income.Total
+    # Find the max month in the max year
+    max_month = max(population.Month for population in population_data_max_year)
 
-        # 检查字典中是否已存在该年份的收入总和，如果不存在则创建一个新的列表
-        if year not in income_totals:
-            income_totals[year] = 0
-
-        # 将该城市的收入添加到对应年份的总和中
-        income_totals[year] += income_amount
-
-    # 返回每个年度的收入总和
-    income_data_formatted = [income for income in income_totals.values()]
-
-    return income_data_formatted
+    return [int(max_year), int(max_month)]
 
 
+def find_old_time():#比誰最新資料年份較舊
+    a=get_students_renew_time()
+    b=(get_population_stats_time())[0]
+    if a<b:
+        return a
+    else:
+        return b
 
+def get_six_city_new_students_quantity():
+    # Fetch the target year
+    target_year = str(find_old_time())
 
+    # Get the six city names
+    six_city_names = gscd()
 
-def get_Household_income(city_name):
-    # Fetch all Household_income data for the specified city
-    income_data = Household_income.objects.filter(city_name=city_name)
+    # Fetch all student data for the target year and the six cities
+    student_data = uacss.objects.filter(year=target_year, city_name__in=six_city_names)
 
-    # Convert to list of lists and sort
-    income_data_sorted = []
-    for income in income_data:
-        income_data_sorted.append([income.year, income.city_name, income.Avg_number_of_househods, income.Avg_number_of_employment, income.Avg_number_of_income, income.Total])
+    # Initialize the city data
+    city_data = {city: [0, 0, 0] for city in six_city_names}
 
-    # Sort by year in ascending order
-    income_data_sorted.sort(key=lambda x: x[0])
-    # Get the most recent year
-    most_recent_year = income_data_sorted[-1][0]
+    # Sum up the number of males, females, and total for each city
+    for student in student_data:
+        city_data[student.city_name][0] += int(student.NumberOfMales)
+        city_data[student.city_name][1] += int(student.NumberOfFemales)
+        city_data[student.city_name][2] += int(student.Total)
 
-    # Filter data for each year until the most recent year
-    filtered_data = [item[5] for item in income_data_sorted if item[0] <= most_recent_year]
+    # Convert to list of lists
+    city_data_list = [[city, *data] for city, data in city_data.items()]
 
-    return filtered_data
+    return city_data_list
 
+def get_six_city_new_population_quantity():
+    # Fetch the target year
+    target_year = str(find_old_time())
 
+    # Get the six city names
+    six_city_names = gscd()
 
+    # Fetch all population data for the target year and the six cities in December
+    population_data = ps.objects.filter(Year=target_year, CityName__in=six_city_names, Month=str((get_population_stats_time())[1]))
 
-def get_all_vehicle_until_income_renew():
-   # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
+    # Initialize the city data
+    city_data = {city: [0, 0, 0] for city in six_city_names}
 
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
+    # Sum up the number of males, females, and total population for each city
+    for population in population_data:
+        city_data[population.CityName][0] += population.NumberOfMales
+        city_data[population.CityName][1] += population.NumberOfFemales
+        city_data[population.CityName][2] += population.NumberOfPopulation
 
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
+    # Convert to list of lists
+    city_data_list = [[city, *data] for city, data in city_data.items()]
+
+    return city_data_list
+
+def get_fot_vehicle_quantity():
+    # Fetch the target year and month
+    target_year = find_old_time()
+    target_month = get_population_stats_time()[1]
+
+    # Get the six city names
+    six_city_names = gscd()
+
+    # Fetch all vehicle data for the target year, month and the six cities
+    vehicle_data = Vehicle.objects.filter(year=target_year, month=target_month, city_name__in=six_city_names)
+
+    # Initialize the city data
+    city_data = {city: 0 for city in six_city_names}
+
+    # Sum up the value for each city
     for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+        city_data[vehicle.city_name] += int(vehicle.value)
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # Convert to list of lists
+    city_data_list = [[city, data] for city, data in city_data.items()]
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    return city_data_list
 
-    # Calculate total vehicles for each year in Taipei City
-    all_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
+def get_fot_car_quantity():
+    # Fetch the target year and month
+    target_year = find_old_time()
+    target_month = get_population_stats_time()[1]
 
-        if city_name == '臺北市' or city_name == '新北市' or city_name == '桃園市'or city_name == '臺中市'or city_name == '臺南市'or city_name == '高雄市'or city_name == '新竹縣'or city_name == '苗栗縣'or city_name == '彰化縣'or city_name == '南投縣'or city_name == '雲林縣'or city_name == '嘉義縣'or city_name == '屏東縣'or city_name == '宜蘭縣'or city_name == '花蓮縣'or city_name == '臺東縣'or city_name == '澎湖縣'or city_name == '金門縣'or city_name == '連江縣'or city_name == '基隆市'or city_name == '新竹市'or city_name == '嘉義市':
-            if year in all_vehicle_totals:
-                all_vehicle_totals[year] += vehicle_count
-            else:
-                all_vehicle_totals[year] = vehicle_count
+    # Get the six city names
+    six_city_names = gscd()
 
-    return all_vehicle_totals
+    # Fetch all vehicle data for the target year, month, the six cities, and vehicle type is car
+    vehicle_data = Vehicle.objects.filter(year=target_year, month=target_month, city_name__in=six_city_names, vehicle_type='小客車')
 
+    # Initialize the city data
+    city_data = {city: 0 for city in six_city_names}
 
-def get_tp_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
-
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
-
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
+    # Sum up the value for each city
     for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+        city_data[vehicle.city_name] += int(vehicle.value)
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # Convert to list of lists
+    city_data_list = [[city, data] for city, data in city_data.items()]
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    return city_data_list
 
-    # Calculate total vehicles for each year in Taipei City
-    tp_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
+def get_fot_motorcycle_quantity():
+    # Fetch the target year and month
+    target_year = find_old_time()
+    target_month = get_population_stats_time()[1]
 
-        if city_name == '臺北市':
-            if year in tp_vehicle_totals:
-                tp_vehicle_totals[year] += vehicle_count
-            else:
-                tp_vehicle_totals[year] = vehicle_count
+    # Get the six city names
+    six_city_names = gscd()
 
-    return tp_vehicle_totals
+    # Fetch all vehicle data for the target year, month, the six cities, and vehicle type is motorcycle
+    vehicle_data = Vehicle.objects.filter(year=target_year, month=target_month, city_name__in=six_city_names, vehicle_type='機車')
 
-def get_np_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
+    # Initialize the city data
+    city_data = {city: 0 for city in six_city_names}
 
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
-
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
+    # Sum up the value for each city
     for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+        city_data[vehicle.city_name] += int(vehicle.value)
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # Convert to list of lists
+    city_data_list = [[city, data] for city, data in city_data.items()]
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    return city_data_list
 
-    # Calculate total vehicles for each year in Taipei City
-    np_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
+"""
+以下為前台較會用到的函式
+"""
 
-        if city_name == '新北市':
-            if year in np_vehicle_totals:
-                np_vehicle_totals[year] += vehicle_count
-            else:
-                np_vehicle_totals[year] = vehicle_count
+def get_six_city_students_proportion():
+    """
+    功能: 
+    計算六大城市中每個城市學生人數佔總人口的比例。
+    此函式使用 get_six_city_new_students_quantity() 和 get_six_city_new_population_quantity() 的結果，
+    產生一個列表，其中每個內部列表由城市名稱和該城市的學生比例組成。
 
-    return np_vehicle_totals
+    輸出格式:
+    [['城市名稱(str)', 學生比例(float)],...]
+    """
 
-def get_ty_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
+    # Get the student quantity and population quantity for each city
+    students_quantity = get_six_city_new_students_quantity()
+    population_quantity = get_six_city_new_population_quantity()
 
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
+    # Convert the lists of lists into dictionaries for easier data manipulation
+    students_quantity_dict = {item[0]: item[3] for item in students_quantity}
+    population_quantity_dict = {item[0]: item[3] for item in population_quantity}
 
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
-    for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+    # Initialize the city data
+    city_data = {}
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # Calculate the proportion of students to the total population for each city
+    for city, students in students_quantity_dict.items():
+        city_data[city] = round(students / population_quantity_dict[city], 4)
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
 
-    # Calculate total vehicles for each year in Taipei City
-    ty_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
+    # Convert the dictionary to a list of lists
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
 
-        if city_name == '桃園市':
-            if year in ty_vehicle_totals:
-                ty_vehicle_totals[year] += vehicle_count
-            else:
-                ty_vehicle_totals[year] = vehicle_count
+    return city_data_list
 
-    return ty_vehicle_totals
+def get_six_city_car_proportion():
+    """
+    功能: 
+    計算六大城市中，每個城市的汽車數量佔總車輛數量的比例。
+    此函數使用 get_fot_car_quantity() 和 get_fot_vehicle_quantity() 的結果，
+    生成一個列表，其中每個內部列表由城市名稱和該城市的汽車比例組成。
 
-def get_tc_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
+    輸出格式:
+    [['城市名稱', 汽車比例(float)],...]
+    """
+    # 獲取每個城市的汽車數量和總車輛數量
+    car_quantity = get_fot_car_quantity()
+    vehicle_quantity = get_fot_vehicle_quantity()
 
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
+    # 將列表轉換為字典，以便於數據操作
+    car_quantity_dict = {item[0]: item[1] for item in car_quantity}
+    vehicle_quantity_dict = {item[0]: item[1] for item in vehicle_quantity}
 
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
-    for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+    # 初始化城市數據
+    city_data = {}
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # 為每個城市計算汽車數量佔總車輛數量的比例
+    for city, cars in car_quantity_dict.items():
+        city_data[city] = round(cars / vehicle_quantity_dict[city], 4)
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
 
-    # Calculate total vehicles for each year in Taipei City
-    tc_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
+    # 將字典轉換為列表
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
 
-        if city_name == '臺中市':
-            if year in tc_vehicle_totals:
-                tc_vehicle_totals[year] += vehicle_count
-            else:
-                tc_vehicle_totals[year] = vehicle_count
+    return city_data_list
 
-    return tc_vehicle_totals
 
-def get_tn_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
+def get_six_city_motorcycle_proportion():
+    """
+    功能: 
+    計算六大城市中，每個城市的機車數量佔總車輛數量的比例。
+    此函數使用 get_fot_motorcycle_quantity() 和 get_fot_vehicle_quantity() 的結果，
+    生成一個列表，其中每個內部列表由城市名稱和該城市的機車比例組成。
 
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
+    輸出格式:
+    [['城市名稱', 機車比例(float)],...]
+    """
+    # 獲取每個城市的機車數量和總車輛數量
+    motorcycle_quantity = get_fot_motorcycle_quantity()
+    vehicle_quantity = get_fot_vehicle_quantity()
 
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
-    for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
+    # 將列表轉換為字典，以便於數據操作
+    motorcycle_quantity_dict = {item[0]: item[1] for item in motorcycle_quantity}
+    vehicle_quantity_dict = {item[0]: item[1] for item in vehicle_quantity}
 
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
+    # 初始化城市數據
+    city_data = {}
 
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
+    # 為每個城市計算機車數量佔總車輛數量的比例
+    for city, motorcycles in motorcycle_quantity_dict.items():
+        city_data[city] = round(motorcycles / vehicle_quantity_dict[city], 4)
 
-    # Calculate total vehicles for each year in Taipei City
-    tn_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
 
-        if city_name == '臺南市':
-            if year in tn_vehicle_totals:
-                tn_vehicle_totals[year] += vehicle_count
-            else:
-                tn_vehicle_totals[year] = vehicle_count
+    # 將字典轉換為列表
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
 
-    return tn_vehicle_totals
-
-def get_kh_vehicle_until_income_renew():
-    # Get the latest year from Household_income data
-    max_year = get_income_renew_time()
-
-    # Fetch all Vehicle data from 2016 to max_year (December)
-    vehicle_data = Vehicle.objects.filter(year__range=(2016, max_year), month=12)
-    
-
-    # Convert to list of lists and sort
-    vehicle_data_sorted = []
-    for vehicle in vehicle_data:
-        vehicle_data_sorted.append([vehicle.year, vehicle.city_name, vehicle.vehicle_type, vehicle.value])
-
-    # Get the city name ordering
-    city_ordering = [city_info[1] for city_info in gcn()]
-
-    # Sort by year, then by city name according to the order in city_ordering
-    vehicle_data_sorted.sort(key=lambda x: (x[0], city_ordering.index(x[1])))
-
-    # Calculate total vehicles for each year in Taipei City
-    kh_vehicle_totals = {}
-    for data in vehicle_data_sorted:
-        year = data[0]
-        city_name = data[1]
-        vehicle_count = data[3]
-
-        if city_name == '高雄市':
-            if year in kh_vehicle_totals:
-                kh_vehicle_totals[year] += vehicle_count
-            else:
-                kh_vehicle_totals[year] = vehicle_count
-
-    return kh_vehicle_totals
+    return city_data_list
 
 
 
 
+if __name__ == "__main__":
 
-
-
-
-
-
-
-
-
-
-
-print(get_all_Household_income())
+    #print(get_students_renew_time())
+    #print(get_population_stats_time())
+    #print(find_old_time())
+    #print(get_six_city_new_students_quantity())
+    #print(get_six_city_new_population_quantity())
+    #print(get_fot_vehicle_quantity())
+    #print(get_fot_car_quantity())
+    #print(get_fot_motorcycle_quantity())
+    #print(get_six_city_students_proportion())
+    #print(get_six_city_car_proportion())
+    print(get_six_city_motorcycle_proportion())
