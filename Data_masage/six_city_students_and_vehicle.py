@@ -156,4 +156,119 @@ def get_fot_motorcycle_quantity():
     city_data_list = [[city, data] for city, data in city_data.items()]
 
     return city_data_list
-  
+
+"""
+以下為前台較會用到的函式
+"""
+
+def get_six_city_students_proportion():
+    """
+    功能: 
+    計算六大城市中每個城市學生人數佔總人口的比例。
+    此函式使用 get_six_city_new_students_quantity() 和 get_six_city_new_population_quantity() 的結果，
+    產生一個列表，其中每個內部列表由城市名稱和該城市的學生比例組成。
+
+    輸出格式:
+    [['城市名稱(str)', 學生比例(float)],...]
+    """
+
+    # Get the student quantity and population quantity for each city
+    students_quantity = get_six_city_new_students_quantity()
+    population_quantity = get_six_city_new_population_quantity()
+
+    # Convert the lists of lists into dictionaries for easier data manipulation
+    students_quantity_dict = {item[0]: item[3] for item in students_quantity}
+    population_quantity_dict = {item[0]: item[3] for item in population_quantity}
+
+    # Initialize the city data
+    city_data = {}
+
+    # Calculate the proportion of students to the total population for each city
+    for city, students in students_quantity_dict.items():
+        city_data[city] = round(students / population_quantity_dict[city], 4)
+
+
+    # Convert the dictionary to a list of lists
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
+
+    return city_data_list
+
+def get_six_city_car_proportion():
+    """
+    功能: 
+    計算六大城市中，每個城市的汽車數量佔總車輛數量的比例。
+    此函數使用 get_fot_car_quantity() 和 get_fot_vehicle_quantity() 的結果，
+    生成一個列表，其中每個內部列表由城市名稱和該城市的汽車比例組成。
+
+    輸出格式:
+    [['城市名稱', 汽車比例(float)],...]
+    """
+    # 獲取每個城市的汽車數量和總車輛數量
+    car_quantity = get_fot_car_quantity()
+    vehicle_quantity = get_fot_vehicle_quantity()
+
+    # 將列表轉換為字典，以便於數據操作
+    car_quantity_dict = {item[0]: item[1] for item in car_quantity}
+    vehicle_quantity_dict = {item[0]: item[1] for item in vehicle_quantity}
+
+    # 初始化城市數據
+    city_data = {}
+
+    # 為每個城市計算汽車數量佔總車輛數量的比例
+    for city, cars in car_quantity_dict.items():
+        city_data[city] = round(cars / vehicle_quantity_dict[city], 4)
+
+
+    # 將字典轉換為列表
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
+
+    return city_data_list
+
+
+def get_six_city_motorcycle_proportion():
+    """
+    功能: 
+    計算六大城市中，每個城市的機車數量佔總車輛數量的比例。
+    此函數使用 get_fot_motorcycle_quantity() 和 get_fot_vehicle_quantity() 的結果，
+    生成一個列表，其中每個內部列表由城市名稱和該城市的機車比例組成。
+
+    輸出格式:
+    [['城市名稱', 機車比例(float)],...]
+    """
+    # 獲取每個城市的機車數量和總車輛數量
+    motorcycle_quantity = get_fot_motorcycle_quantity()
+    vehicle_quantity = get_fot_vehicle_quantity()
+
+    # 將列表轉換為字典，以便於數據操作
+    motorcycle_quantity_dict = {item[0]: item[1] for item in motorcycle_quantity}
+    vehicle_quantity_dict = {item[0]: item[1] for item in vehicle_quantity}
+
+    # 初始化城市數據
+    city_data = {}
+
+    # 為每個城市計算機車數量佔總車輛數量的比例
+    for city, motorcycles in motorcycle_quantity_dict.items():
+        city_data[city] = round(motorcycles / vehicle_quantity_dict[city], 4)
+
+
+    # 將字典轉換為列表
+    city_data_list = [[city, proportion] for city, proportion in city_data.items()]
+
+    return city_data_list
+
+
+
+
+if __name__ == "__main__":
+
+    print(get_students_renew_time())
+    print(get_population_stats_time())
+    print(find_old_time())
+    print(get_six_city_new_students_quantity())
+    print(get_six_city_new_population_quantity())
+    print(get_fot_vehicle_quantity())
+    print(get_fot_car_quantity())
+    print(get_fot_motorcycle_quantity())
+    print(get_six_city_students_proportion())
+    print(get_six_city_car_proportion())
+    print(get_six_city_motorcycle_proportion())

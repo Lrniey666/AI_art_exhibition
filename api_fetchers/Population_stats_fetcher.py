@@ -114,3 +114,4 @@ def fetch_and_store_Population_stats_data():
             except Exception as e:
                 print(f"Error fetching data for {city_name_en} in {year}: {e}")
 
+

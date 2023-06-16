@@ -29,7 +29,8 @@ def index(request):
 
 
 
-def vehicle_quantity_ranking(request):  
+def vehicle_quantity_ranking(request): 
+    faspsd() 
     vehicle_data = vr()  # 調用vehicle_ranking()函數獲取數據
     time = gvlyrm()
     # 將數據轉換為所需的格式
