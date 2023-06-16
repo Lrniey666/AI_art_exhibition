@@ -154,11 +154,7 @@ def get_six_city_population_avg_car():
 
     return result
 
-<<<<<<< HEAD
 def get_six_city_population_avg_scooter():
-=======
-def get_six_city_students_population_avg_scooter():
->>>>>>> 2bdbba7c7e2622b93d45099be14c17a21f8e9603
     """
     此函數將輸出六個城市的平均每十萬人的機車數量。
     輸出格式: [['城市名稱1', 機車數量1], ['城市名稱2', 機車數量2], ..., ['城市名稱6', 機車數量6]]
