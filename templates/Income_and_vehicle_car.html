@@ -4,9 +4,6 @@
 2021年-小汽車
 {% endblock %}
 
-{% block headmessage %}
-<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
-{% endblock %}
 
 {% block content %}
 <canvas id="barChart"></canvas>
@@ -52,12 +49,37 @@
           display: true,
           text: '2021年-小汽車',
           font: {
-            size: 20,
+            size: 22,
             weight: 'bold'
           }
-        }
+        },
+        legend: {
+          labels: {
+            font: {
+              size: 18, // 修改为所需的图例字体大小
+              weight: 'bold'
+            },
+          },
+        },
       },
       scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: '城市',
+            font: {
+              size: 18,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+          },
+        },
         y: {
           position: 'left', // 左邊軸
           display: true,
@@ -66,6 +88,12 @@
             text: '人均車數',
             font: {
               size: 16,
+              weight: 'bold'
+            }
+          },
+          ticks: {
+            font: {
+              size: 14, // 修改为所需的字体大小
               weight: 'bold'
             }
           }
@@ -82,6 +110,10 @@
             }
           },
           ticks: {
+            font: {
+              size: 14, // 修改为所需的字体大小
+              weight: 'bold'
+            },
             stepSize: 10000,
             callback: function(value, index, values) {
               return value + '元';

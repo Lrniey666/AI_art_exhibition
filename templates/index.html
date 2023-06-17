@@ -2,46 +2,45 @@
 
 {% block title %}台灣車輛資訊網{% endblock %}
 
-{% block headmessage %}
-<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
-{% endblock %}
 
 {% block content %}
 <div class="cover">
-  <img src="https://i.imgur.com/OsES4w5.png" alt="封面圖片" style="width: 1097px; height: 300px;">
+  <img src="static/images/the_cover.png" alt="封面圖片"style="width: 1117px; height: auto;"class="cover-image">
 </div>
 <div class="image-grid">
     <div class="image-item">
         <a href="{% url 'vehicle_quantity_ranking' %}">
-          <img src="https://i.imgur.com/XZrX77q.png" alt="圖片1" style="width: 100%;">
+          <img src="static\images\vqr_link.png" alt="圖片1" style="width: 100%;">
         </a>
     </div>
     <div class="image-item">
         <a href="{% url 'vehicle_growing_up_all' %}">
-            <img src="https://i.imgur.com/G5a6quX.png" alt="圖片2" style="width: 100%;">
+            <img src="static\images\vigc_link.png" alt="圖片2" style="width: 100%;">
         </a>
     </div>
     <div class="image-item">
         <a href="{% url 'Income_and_vehicle_all' %}">
-            <img src="https://i.imgur.com/rNhEwh1.png" alt="圖片3" style="width: 100%;">
+            <img src="static\images\scivic_link.png" alt="圖片3" style="width: 100%;">
         </a>
     </div>
     <div class="image-item">
         <a href="{% url 'student_and_vehicle_car' %}">
-            <img src="https://i.imgur.com/EGwI7gU.png" alt="圖片4" style="width: 100%;">
+            <img src="static\images\scsav_link.png" alt="圖片4" style="width: 100%;">
         </a>
     </div>
   </div>
 <style>
     .cover {
       text-align: center; /* 將圖片置中 */
-      padding: 20px;
+      margin-right: 200px;
+      margin-top: 10px;
       /* 其他樣式設定 */
     }
     .image-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
-      gap: 20px; /* 設定圖片間的間距 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
       /* 其他樣式設定 */
     }
 </style>

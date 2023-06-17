@@ -4,9 +4,6 @@
   2021年各縣市車輛數及收入
 {% endblock %}
 
-{% block headmessage %}
-<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
-{% endblock %}
 
 {% block content %}
 <canvas id="myChart"></canvas>
@@ -28,6 +25,7 @@
       data: values,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
+      borderWidth: 5, // 設定線的粗細
       tension: 0.1
     },
     {
@@ -35,50 +33,83 @@
       data: income_data_formatted,
       fill: false,
       borderColor: 'red',
+      borderWidth: 5, // 設定線的粗細
       tension: 0.1
     }]
   };
   
   const config = {
-    type: 'line',
-    data: data,
-    options: {
-      plugins: {
+  type: 'line',
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: '截至2021年全國車輛數及收入',
+        font: {
+          size: 22,
+          weight: 'bold'
+        }
+      },
+        legend: {
+          labels: {
+            font: {
+              size: 18, // 修改为所需的图例字体大小
+              weight: 'bold'
+            },
+          },
+        },
+    },
+    scales: {
+      x: {
+        display: true,
         title: {
           display: true,
-          text: '截至2021年全國車輛數及收入', // 標題文字
+          text: '年份',
           font: {
-            size: 20, // 標題字體大小
-            weight: 'bold' // 標題字體粗細
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        grid: {
+          display: true,
+          color: 'black',
+          borderWidth: 2
+        },
+        ticks: {
+          font: {
+            weight: 'bold', // 設定數值字體的粗細
+            size: 16 // 設定數值字體的大小
           }
         }
       },
-      scales: {
-        x: {
+      y: {
+        display: true,
+        title: {
           display: true,
-          title: {
-            display: true,
-            text: '年份', // 橫軸標籤文字
-            font: {
-              size: 16, // 橫軸標籤字體大小
-              weight: 'bold' // 橫軸標籤字體粗細
-            }
+          text: '車輛數/年收入',
+          font: {
+            size: 18,
+            weight: 'bold'
           }
         },
-        y: {
+        grid: {
           display: true,
-          title: {
-            display: true,
-            text: '車輛數/年收入', // 縱軸標籤文字
-            font: {
-              size: 16, // 縱軸標籤字體大小
-              weight: 'bold' // 縱軸標籤字體粗細
-            }
+          color: 'black',
+          borderWidth: 2
+        },
+        ticks: {
+          font: {
+            weight: 'bold', // 設定數值字體的粗細
+            size: 16 // 設定數值字體的大小
           }
         }
       }
     }
-  };
+  }
+};
+
+
 
   // 在頁面加載完成後繪製圖表
   document.addEventListener('DOMContentLoaded', () => {

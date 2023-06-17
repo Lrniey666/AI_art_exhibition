@@ -4,9 +4,7 @@
 2021年-小汽車
 {% endblock %}
 
-{% block headmessage %}
-<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
-{% endblock %}
+
 
 {% block content %}
 <canvas id="barChart"></canvas>
@@ -52,12 +50,37 @@
           display: true,
           text: '2021年-小汽車',
           font: {
-            size: 20,
+            size: 22,
             weight: 'bold'
           }
-        }
+        },
+        legend: {
+          labels: {
+            font: {
+              size: 18, // 修改为所需的图例字体大小
+              weight: 'bold'
+            },
+          },
+        },
       },
       scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: '城市',
+            font: {
+              size: 18,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
+          },
+        },
         y: {
           position: 'left', // 左邊軸
           display: true,
@@ -65,11 +88,15 @@
             display: true,
             text: '汽車比例',
             font: {
-              size: 16,
+              size: 18,
               weight: 'bold'
             }
           },
           ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
           callback: function(value, index, values) {
             return (value)+ '%'; // 將數值轉換為百分比形式
             }
@@ -82,11 +109,15 @@
             display: true,
             text: '學生比例',
             font: {
-              size: 16,
+              size: 18,
               weight: 'bold'
             }
           },
           ticks: {
+            font: {
+              size: 14,
+              weight: 'bold',
+            },
           callback: function(value, index, values) {
             return (value) + '%'; // 將數值轉換為百分比形式
             }

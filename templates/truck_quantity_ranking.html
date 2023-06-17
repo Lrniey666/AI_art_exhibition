@@ -4,9 +4,7 @@
   {{year}}年{{month}}月-全國大貨車數量排行
 {% endblock %}
 
-{% block headmessage %}
-<h1><a href="{% url 'index' %}"><img src="https://i.imgur.com/vrD3ewm.png" alt="標題圖片" style="width: 500px; height: auto;"></a></h1>
-{% endblock %}
+
 
 {% block content %}
 <style>
@@ -17,7 +15,7 @@
   }
 </style>
 
-<p style="font-size: 20px; text-align: center; font-weight: bold;">{{year}}年{{month}}月-全國大貨車數量排行</p>
+<p style="font-size: 22px; text-align: center; font-weight: bold;">{{year}}年{{month}}月-全國大貨車數量排行</p>
 <div class="chart-container">
   <canvas id="myChart"></canvas>
 </div>
@@ -70,6 +68,12 @@
       },
         legend: {
           display: true,
+          labels: {
+            font: {
+              size: 18, // 修改为所需的图例字体大小
+              weight: 'bold'
+            },
+          },
         },
       },
       scales: {
