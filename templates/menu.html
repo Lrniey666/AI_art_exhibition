@@ -22,26 +22,31 @@
 </script>
 
 <style>
-@media (min-width: 481px) {.row_0 .col_01 { width: 0%;}.row_0 .col_02 { width: 65%;}.row_0 .col_03 { width: 35%;}}@media (min-width: 481px) {.row_1 .col_01 { width: 0%;}.row_1 .col_02 { width: 65%;}.row_1 .col_03 { width: 35%;}}@media (min-width: 481px) {.row_2 .col_01 { width: 0%;}.row_2 .col_02 { width: 100%;}.row_2 .col_03 { width: 0%;}}@media (min-width: 481px) {.row_3 .col_01 { width: 0%;}.row_3 .col_02 { width: 100%;}.row_3 .col_03 { width: 0%;}}@media (min-width: 481px) {.row_4 .col_01 { width: 0%;}.row_4 .col_02 { width: 100%;}.row_4 .col_03 { width: 0%;}}
-.navbar-nav .nav-link {
-  font-size: 20px; /* 設定字體大小為20像素 */
-}
-.dropdown-menu .dropdown-item {
-    font-size: 20px; /* 調整為您希望的字體大小 */
-    font-weight: bold;
+  @media (min-width: 481px) {
+    .row_0 .col_01 { width: 0%;}.row_0 .col_02 { width: 65%;}.row_0 .col_03 { width: 35%;}}@media (min-width: 481px) {.row_1 .col_01 { width: 0%;}.row_1 .col_02 { width: 65%;}.row_1 .col_03 { width: 35%;}}@media (min-width: 481px) {.row_2 .col_01 { width: 0%;}.row_2 .col_02 { width: 100%;}.row_2 .col_03 { width: 0%;}}@media (min-width: 481px) {.row_3 .col_01 { width: 0%;}.row_3 .col_02 { width: 100%;}.row_3 .col_03 { width: 0%;}}@media (min-width: 481px) {.row_4 .col_01 { width: 0%;}.row_4 .col_02 { width: 100%;}.row_4 .col_03 { width: 0%;}}
+  .navbar-nav .nav-link {
+    font-size: 20px; /* 設定字體大小為20像素 */
   }
-.navbar-nav {
-  text-align: center;
-}
-
-.navbar {
-  width: 100%;
-}
+  .dropdown-menu .dropdown-item {
+      font-size: 20px; /* 調整為您希望的字體大小 */
+      font-weight: bold;
+    }
+  .navbar-nav {
+    text-align: center;
+  }
+  
+  .navbar {
+    width: 100%;
+  }
+  .navbar-collapse {
+    flex-wrap: wrap;
+  }
   .navbar-dark .navbar-nav .nav-link {
-      color: white; /* 設定選項字體顏色為黑色 */
-      font-weight: bold; /* 設定字體加粗 */
-  }
-</style>
+        color: white; /* 設定選項字體顏色為黑色 */
+        font-weight: bold; /* 設定字體加粗 */
+    }
+  </style>
+  
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #236bc4;">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,17 +101,32 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://www.motc.gov.tw/">交通部官網</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="https://stat.motc.gov.tw/mocdb/stmain.jsp?sys=100">交通部統計查詢網</a>
+        </li>      
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.motc.gov.tw/ch/app/folder/639">交通部公開資訊</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://www.moea.gov.tw/Mns/dos/home/Home.aspx">經濟部統計處官網</a>
-        </li> 
+        </li>          
         <li class="nav-item">
           <a class="nav-link" href="https://www.dgbas.gov.tw/cl.aspx?n=1778">行政院主計總處官網</a>
-        </li>         
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.edu.tw/Default.aspx">教育部全球資訊網</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.mof.gov.tw/">財政部全球資訊網</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://stat.motc.gov.tw/mocdb/stmain.jsp?sys=100&funid=a3301">台灣機動車輛登記數</a>
+        </li>       
         <li class="nav-item">
           <a class="nav-link" href="/admin/">管理後台</a>
-        </li>
-        <li class="nav-item dropdown">
         </li>
       </ul>
     </div>

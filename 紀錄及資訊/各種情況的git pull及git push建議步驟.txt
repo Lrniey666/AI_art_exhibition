@@ -31,7 +31,7 @@ git status//哪些文件已經被修改過
 
 git add .//添加你想要提交的改變(全部) git add ...py 添加你想要提交的改變(...py)
 
-git commit -m "Data_masage.vehicle_income_growing_compare運用於六都車數成長與收入(2016-2021)"
+git commit -m "massage"
 
 git push//沒成功逝世以下指令
 
@@ -95,6 +95,9 @@ git add .
 git commit -m "Initial commit"
 
 ///////////////////////////////////
+
+ChatGPT資訊：
+https://chat.openai.com/share/1daabf0a-f7cc-45f7-83fe-62415a94fb3f
 
 
 高速開網站:

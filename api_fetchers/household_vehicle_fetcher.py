@@ -99,3 +99,6 @@ def fetch_and_store_vehicle_data():
             
             except Exception as e:
                 print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    fetch_and_store_vehicle_data()                

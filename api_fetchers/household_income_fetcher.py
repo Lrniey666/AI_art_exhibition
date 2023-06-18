@@ -116,3 +116,9 @@ def fetch_and_store_income_data():
             except Exception as e:
                 print(f"An error occurred: {e}")
     print("\n沒有",no,"\n")
+
+
+if __name__ == "__main__":
+    fetch_and_store_income_data()
+
+    
