@@ -23,14 +23,14 @@
     labels: labels,
     datasets: [
       {
-        label: '人均車數',
+        label: '每10萬人均車數(單位:輛)',
         data: values,
         backgroundColor: 'blue',
         borderColor: 'blue',
         borderWidth: 1
       },
       {
-        label: '平均收入',
+        label: '人均月收入(單位:元)',
         data: six_city_month_PCI.map(item => item[1]),
         backgroundColor: 'red',
         borderColor: 'red',
@@ -49,14 +49,14 @@
           display: true,
           text: '2021年-機車',
           font: {
-            size: 22,
+            size: 30,
             weight: 'bold'
           }
         },
         legend: {
           labels: {
             font: {
-              size: 18, // 修改为所需的图例字体大小
+              size: 25, // 修改为所需的图例字体大小
               weight: 'bold'
             },
           },
@@ -69,13 +69,18 @@
             display: true,
             text: '城市',
             font: {
-              size: 18,
+              size: 25,
               weight: 'bold',
             },
           },
+        grid: {
+          display: true,
+          color: 'black',
+          borderWidth: 5
+        },
           ticks: {
             font: {
-              size: 14,
+              size: 25,
               weight: 'bold',
             },
           },
@@ -85,15 +90,20 @@
           display: true,
           title: {
             display: true,
-            text: '人均車數',
+            text: '每10萬人均車數(單位:輛)',
             font: {
-              size: 16,
+              size: 25,
               weight: 'bold'
             }
           },
+        grid: {
+          display: true,
+          color: 'black',
+          borderWidth: 5
+        },
           ticks: {
             font: {
-              size: 14, // 修改为所需的字体大小
+              size: 25, // 修改为所需的字体大小
               weight: 'bold'  
             }
           }
@@ -103,17 +113,23 @@
           display: true,
           title: {
             display: true,
-            text: '平均收入',
+            text: '人均月收入(單位:元)',
             font: {
-              size: 16,
+              size: 25,
               weight: 'bold'
             }
           },
+        grid: {
+          display: true,
+          color: 'black',
+          borderWidth: 5
+        },
           ticks: {
             font: {
-              size: 14, // 修改为所需的字体大小
-              weight: 'bold'  
+              size: 25, // 修改为所需的字体大小
+              weight: 'bold'
             },
+            stepSize: 10000,
             callback: function(value, index, values) {
               return value + '元';
             }
