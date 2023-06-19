@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+其他現代藝術之探窗之美系列
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<p style="font-size: 80px; text-align: center; font-weight: bold;">其他現代藝術之探窗之美系列</p>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\abstract_painting\window\00038-4256303252.png" style="width: 600px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\abstract_painting\window\00039-2647418500.png" style="width: 600px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\abstract_painting\window\00023-3192847806.png" style="width: 600px; height: auto;" class="cover-image">
+  </div>
+</div>
+
+
+
+
+
+  <style>
+    .chart-container {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+    }  
+    .cover {
+      text-align: center; /* 將圖片置中 */
+      margin-right: 50px;
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+  </style>
+{% endblock %}

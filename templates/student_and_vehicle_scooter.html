@@ -1,151 +1,62 @@
 {% extends 'base.html' %}
 
 {% block title %}
-2021年-機車
+交通工具之速克達系列
 {% endblock %}
 
 
 
 {% block content %}
-<canvas id="barChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // 獲取車輛數量排行資料
-  const six_city_motorcycle_proportion = {{ six_city_motorcycle_proportion|safe }};
-  const six_city_students_proportion = {{six_city_students_proportion|safe}};
-  
-  // 建立圖表
-  const cityNames = six_city_motorcycle_proportion.map(item => item[0]);
-  const values = six_city_motorcycle_proportion.map(item => item[1]);
 
-  const labels = cityNames;
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: '機車於車輛中的比例',
-        data: values.map(value => (value * 100).toFixed(2)), // 將數值轉換為百分比形式
-        backgroundColor: 'blue',
-        borderColor: 'blue',
-        borderWidth: 1
-      },
-      {
-        label: '學生於全市人口的比例',
-        data: six_city_students_proportion.map(item => (item[1] * 100).toFixed(2)), // 將數值轉換為百分比形式
-        backgroundColor: 'red',
-        borderColor: 'red',
-        borderWidth: 1,
-        yAxisID: 'y1' // 設置 yAxisID 為 'y1'
-      }
-    ]
-  };
+{% load static %}
+<p style="font-size: 80px; text-align: center; font-weight: bold;">交通工具之速克達系列</p>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\velicle\scooter\00129-3242631358.png" style="width: 1000px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="image-grid">
+  <div class="image-item">
+        <img src="\static\images\velicle\scooter\00127-2668677146.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+  <div class="image-item">
+          <img src="\static\images\velicle\scooter\00128-616028014.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+</div>
+<div class="image-grid">
+  <div class="image-item">
+        <img src="\static\images\velicle\scooter\00126-2171154893.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+  <div class="image-item">
+          <img src="\static\images\velicle\scooter\00125-436458738.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+</div>
 
 
-  const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: '2021年-機車',
-          font: {
-            size: 30,
-            weight: 'bold'
-          }
-        },
-        legend: {
-          labels: {
-            font: {
-              size: 25, // 修改为所需的图例字体大小
-              weight: 'bold'
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: '城市',
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-        },
-        y: {
-          position: 'left', // 左邊軸
-          display: true,
-          title: {
-            display: true,
-            text: '機車於車輛中的比例',
-            font: {
-              size: 25,
-              weight: 'bold'
-            }
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          callback: function(value, index, values) {
-            return (value)+ '%'; // 將數值轉換為百分比形式
-            }
-          }
-        },
-        y1: {
-          position: 'right', // 右邊軸
-          display: true,
-          title: {
-            display: true,
-            text: '學生於全市人口的比例',
-            font: {
-              size: 25,
-              weight: 'bold'
-            }
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          callback: function(value, index, values) {
-            return (value) + '%'; // 將數值轉換為百分比形式
-            }
-          }
-        }
-      }
+
+
+  <style>
+    .chart-container {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+    }  
+    .cover {
+      text-align: center; /* 將圖片置中 */
+      margin-right: 50px;
+      margin-top: 10px;
+      /* 其他樣式設定 */
     }
-  };
-
-  // 在頁面加載完成後繪製圖表
-  document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('barChart').getContext('2d');
-    const chart = new Chart(ctx, config);
-  });
-</script>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+  </style>
 {% endblock %}

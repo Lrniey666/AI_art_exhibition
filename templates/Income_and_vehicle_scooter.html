@@ -1,148 +1,55 @@
 {% extends 'base.html' %}
 
 {% block title %}
-2021年-機車
+藍白空間現代藝術之對稱之美系列
 {% endblock %}
 
 
 {% block content %}
-<canvas id="barChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // 獲取車輛數量排行資料
-  const six_city_population_avg_scooter = {{ six_city_population_avg_scooter|safe }};
-  const six_city_month_PCI = {{six_city_month_PCI|safe}};
-  
-  // 建立圖表
-  const cityNames = six_city_population_avg_scooter.map(item => item[0]);
-  const values = six_city_population_avg_scooter.map(item => item[1]);
-  const Incometotal = six_city_month_PCI.map(item => item[6]);
+{% load static %}
+<p style="font-size: 80px; text-align: center; font-weight: bold;">藍白空間現代藝術之對稱之美系列</p>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\blue_abstract\symmetry\00025-2219769174.png" style="width: 1200px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\blue_abstract\symmetry\00028-1600074769.png" style="width: 1200px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\blue_abstract\symmetry\00029-195517127.png" style="width: 1200px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\blue_abstract\symmetry\00031-1459797685.png" style="width: 1200px; height: auto;" class="cover-image">
+  </div>
+</div>
 
-  const labels = cityNames;
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: '每10萬人均車數(單位:輛)',
-        data: values,
-        backgroundColor: 'blue',
-        borderColor: 'blue',
-        borderWidth: 1
-      },
-      {
-        label: '人均月收入(單位:元)',
-        data: six_city_month_PCI.map(item => item[1]),
-        backgroundColor: 'red',
-        borderColor: 'red',
-        borderWidth: 1,
-        yAxisID: 'y1' // 設置 yAxisID 為 'y1'
-      }
-    ]
-  };
 
-  const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: '2021年-機車',
-          font: {
-            size: 30,
-            weight: 'bold'
-          }
-        },
-        legend: {
-          labels: {
-            font: {
-              size: 25, // 修改为所需的图例字体大小
-              weight: 'bold'
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: '城市',
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-        },
-        y: {
-          position: 'left', // 左邊軸
-          display: true,
-          title: {
-            display: true,
-            text: '每10萬人均車數(單位:輛)',
-            font: {
-              size: 25,
-              weight: 'bold'
-            }
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25, // 修改为所需的字体大小
-              weight: 'bold'  
-            }
-          }
-        },
-        y1: {
-          position: 'right', // 右邊軸
-          display: true,
-          title: {
-            display: true,
-            text: '人均月收入(單位:元)',
-            font: {
-              size: 25,
-              weight: 'bold'
-            }
-          },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-          ticks: {
-            font: {
-              size: 25, // 修改为所需的字体大小
-              weight: 'bold'
-            },
-            stepSize: 10000,
-            callback: function(value, index, values) {
-              return value + '元';
-            }
-          }
-        }
-      }
+
+
+  <style>
+    .chart-container {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+    }  
+    .cover {
+      text-align: center; /* 將圖片置中 */
+      margin-right: 50px;
+      margin-top: 10px;
+      /* 其他樣式設定 */
     }
-  };
-
-  // 在頁面加載完成後繪製圖表
-  document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('barChart').getContext('2d');
-    const chart = new Chart(ctx, config);
-  });
-</script>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+  </style>
 {% endblock %}

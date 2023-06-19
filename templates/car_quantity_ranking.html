@@ -1,173 +1,58 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{year}}年{{month}}月-全國小汽車數量排行
+交通工具之經典跑車系列
 {% endblock %}
 
 
 {% block content %}
-<style>
-  .chart-container {
-    width: 100%;
-    height: 800px; /* 设置图表容器的高度 */
-    margin: auto;
-  }
-</style>
 
-<p style="font-size: 30px; text-align: center; font-weight: bold;">{{year}}年{{month}}月-全國小汽車數量排行</p>
-<div class="chart-container">
-  <canvas id="myChart"></canvas>
+
+{% load static %}
+<p style="font-size: 80px; text-align: center; font-weight: bold;">交通工具之經典跑車系列</p>
+
+<div class="image-grid">
+  <div class="image-item">
+        <img src="\static\images\velicle\classcal\00112-3831475813.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+  <div class="image-item">
+          <img src="\static\images\velicle\classcal\00113-3624736672.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+</div>
+<div class="image-grid">
+  <div class="image-item">
+        <img src="\static\images\velicle\classcal\00110-1801662411.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
+  <div class="image-item">
+          <img src="\static\images\velicle\classcal\00107-55878612.png" style="width: 600px; height: auto;" class="cover-image">
+      </a>
+  </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
-<script>
-  const ctx = document.getElementById('myChart');
-      // 設定 canvas 的寬度和高度
-  ctx.width = 1000;
-  ctx.height = 600;
-  // 獲取車輛數量排行資料
-  const cityNames = {{ city_names|safe }};
-  const values = {{ values|safe }};
-  // 生成一系列由深到淺的紫色
-  function generatePurpleColors(length) {
-    var colors = [];
-    var startColor = [128, 0, 128]; // 初始顏色 (紫色)
-    var endColor = [230, 230, 250]; // 結束顏色 (淺紫色)
 
-    for (var i = 0; i < length; i++) {
-      var ratio = i / (length - 1);
-      var color = interpolateColor(startColor, endColor, ratio);
-      colors.push('rgb(' + color.join(',') + ')');
+
+
+  <style>
+    .chart-container {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+    }  
+    .cover {
+      text-align: center; /* 將圖片置中 */
+      margin-right: 50px;
+      margin-top: 10px;
+      /* 其他樣式設定 */
     }
-
-    return colors;
-  }
-
-// 插值計算兩個顏色之間的中間顏色
-function interpolateColor(startColor, endColor, ratio) {
-  var result = [];
-  for (var i = 0; i < 3; i++) {
-    result[i] = Math.round(startColor[i] + (endColor[i] - startColor[i]) * ratio);
-  }
-  return result;
-}
-
-// 使用生成的顏色陣列作為 backgroundColor
-var colors = generatePurpleColors(values.length);
-  // 配置圖表
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: cityNames,
-      datasets: [{
-        label: '車輛數',
-        data: values,
-        backgroundColor: colors,
-        borderWidth: 1
-      }]
-    },
-    options: {
-    responsive: true,
-    plugins: {
-      tooltip: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: function(context) {
-            var label = context.dataset.label || '';
-            if (label) {
-              label += ': ';
-            }
-            if (context.parsed.y !== null) {
-              label += context.parsed.y.toLocaleString(); // 格式化数据标签
-            }
-            return label;
-          },
-          labelColor: function(context) {
-          var gradient = context.chart.ctx.createLinearGradient(0, 0, 0, context.chart.height);
-          var startColor = [128, 0, 128]; // 最深的紫色
-          var endColor = [230, 230, 250]; // 最淺的紫色
-          gradient.addColorStop(0, 'rgb(' + startColor.join(',') + ')');
-          gradient.addColorStop(1, 'rgb(' + endColor.join(',') + ')');
-          return {
-            borderColor: 'rgba(0, 0, 0, 0)',
-            backgroundColor: gradient, // 使用漸層顏色
-            color: 'white',
-            borderRadius: 4,
-          };
-        },
-        labelTextColor: function(context) {
-          return 'white'; // 设置标签文本颜色为白色
-        },
-        labelFont: function(context) {
-          return {
-            size: 30, // 设置标签文本字体大小为 30（根据您的需要进行调整）
-            weight: 'bold'
-          };
-        }
-      }
-    },
-    legend: {
-          labels: {
-            font: {
-              size: 25, // 修改为所需的图例字体大小
-              weight: 'bold'
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: '城市',
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-          grid: {
-            display: true,
-            color: 'black',
-            borderWidth: 5
-          },
-          ticks: {
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-          },
-        },
-        y: {
-          position: 'left', // 將垂直軸放在上方
-          title: {
-            display: true,
-            text: '車輛數(單位:輛)',
-            font: {
-              size: 25,
-              weight: 'bold',
-            },
-            padding: {
-              bottom: 10, // 調整標題和軸之間的間距
-            },
-          },
-          grid: {
-            display: true,
-            color: 'black',
-            borderWidth: 5
-          },
-          ticks: {
-            font: {
-              size: 23,
-              weight: 'bold',
-            },
-            beginAtZero: false,
-            min: 1,
-          },
-        },
-      },
-    },
-  });
-</script>
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+  </style>
 {% endblock %}

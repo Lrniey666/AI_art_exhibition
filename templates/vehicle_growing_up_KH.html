@@ -1,145 +1,49 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  截至2021年高雄市車數成長與收入
+其他系列
 {% endblock %}
 
 
 
 {% block content %}
-<canvas id="myChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // 獲取車輛數量排行資料
-  const kh_vehicle_totals = {{ kh_vehicle_totals|safe }};
-  const filtered_data = {{filtered_data|safe}};
-  // 建立圖表
-  const year = Object.keys(kh_vehicle_totals);
-  const values = Object.values(kh_vehicle_totals);
 
-  const labels = year;
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: '車輛數(單位:輛)',
-      data: values,
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      borderWidth: 5, // 設定線的粗細
-      tension: 0.1,
-      yAxisID: 'y1' // 設置 yAxisID 為 'y1'
-    },
-    {
-      label: '年收入(單位:百萬)',
-      data: filtered_data, // Modify this line to use the correct index,
-      fill: false,
-      borderColor: 'red',
-      borderWidth: 5, // 設定線的粗細
-      tension: 0.1
-      },
-  ]
-  };
+{% load static %}
+<p style="font-size: 80px; text-align: center; font-weight: bold;">其他系列</p>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\other\00002-1905084891.png" style="width: 1000px; height: auto;" class="cover-image">
+  </div>
+</div>
+<div class="cover">
+  <div class="image-item">
+      <img src="\static\images\other\00001-3819194205.png" style="width: 1000px; height: auto;" class="cover-image">
+  </div>
+</div>
 
-  const config = {
-    type: 'line',
-    data: data,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: `截至2021年高雄市車數成長與收入`, // 標題文字
-          font: {
-            size: 30, // 標題字體大小
-            weight: 'bold' // 標題字體粗細
-          }
-        },
-      legend: {
-        labels: {
-          font: {
-            size: 25, // 修改为所需的图例字体大小
-            weight: 'bold'
-          }
-        }
-      }
-    },
-    scales: {
-      x: {
-        display: true,
-        title: {
-          display: true,
-          text: '年份',
-          font: {
-            size: 25,
-            weight: 'bold'
-          }
-        },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-        ticks: {
-          font: {
-            weight: 'bold', // 設定數值字體的粗細
-            size: 25 // 設定數值字體的大小
-          }
-        }
-      },
-      y: {
-        display: true,
-        title: {
-          display: true,
-          text: '車輛數(單位:輛)',
-          font: {
-            size: 25,
-            weight: 'bold'
-          }
-        },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-        ticks: {
-          font: {
-            weight: 'bold', // 設定數值字體的粗細
-            size: 25 // 設定數值字體的大小
-          }
-        }
-      },
-      y1: {
-        position: 'right', // 右邊軸
-        display: true,
-        title: {
-          display: true,
-          text: '年收入(單位:百萬)',
-          font: {
-            size: 25,
-            weight: 'bold'
-          }
-        },
-        grid: {
-          display: true,
-          color: 'black',
-          borderWidth: 5
-        },
-        ticks: {
-          font: {
-            size: 25, // 修改为所需的字体大小
-            weight: 'bold'
-          }
-        }
-      }
+
+
+  <style>
+    .chart-container {
+      width: 100%;
+      height: 800px;
+      margin: auto;
+    }  
+    .cover {
+      text-align: center; /* 將圖片置中 */
+      margin-right: 50px;
+      margin-top: 10px;
+      /* 其他樣式設定 */
     }
-  }
-};
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 將圖片分成四欄 */
+      gap: 10px; /* 設定圖片間的間距 */
+      margin-top: 10px;
+      /* 其他樣式設定 */
+    }
+  </style>
 
-  // 在頁面加載完成後繪製圖表
-  document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const chart = new Chart(ctx, config);
-  });
-</script>
 {% endblock %}
 
 
